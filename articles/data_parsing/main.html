@@ -45,16 +45,15 @@ ele.style.display = "block";
 
 <h1>CAE Data Processing with Python</h1>
 <br><br>
-<!--<img src="../../images/under_construction.png" height="150" width="150" align="left"></img>-->
+<img src="../../images/under_construction.png" height="150" width="150" align="left"></img>
 
-<img src="../../images/under_construction.png" height="75" width="75" align="left"></img>
 <h2>This Article (A Work in Progress)</h2>
 
 <p>The article is the first stage of what I hope to make into a 
-comprehensive groundup introduction for manipulating CAE datafiles using Python.
-</p><p>Currently, it consists of a series commented set of code examples which: </p>
+comprehensive ground up introduction for manipulating CAE datafiles using Python.
+</p><p>Currently, it consists of a series examples which: </p>
 <li>Demonstrate a spectrum of CAE datafile processing tasks</li>
-<li>Start utterly simply the progressively incorporate more complex techniques and structure</li>
+<li>Start simple then progressively incorporate more complex techniques and structure</li>
 <li>Contain discussion and outline of overall script strategy</li>
 <li>Identify and link to descriptions of concepts and methods/functions used</li></li>
 <br>
@@ -62,12 +61,12 @@ comprehensive groundup introduction for manipulating CAE datafiles using Python.
 
 <h2>A Brief CAE Background</h2>
 <p>The engineering and scientific community use analysis software to model
-their resprctive systems.
+their respective systems.
 The software often relies heavily on many types datafiles. There has
 been a movement, in varying level of success, to move to standardize
-document formatx like XML or JSON, however the vast majorty still use
+document format like XML or JSON, however the vast majority still use
 task specific ASCII formats. Various needs arise to process these
-datafiles in a programatic manner.
+datafiles in a programmatic manner.
 Python provides an excellent platform to do this.</p>
 
 <h2>A Less Brief Background<a id="displayText" href="javascript:toggle('toggleText');"> + Expand</a></h2>
@@ -90,7 +89,7 @@ solver which returns raw numeric output describing the various output requests d
 <br>
 <br>
 Of course, over time software has developed to automate
-the generation of these inupt decks (pre-processors) and analysis
+the generation of these input decks (pre-processors) and analysis
 of the output data (post-processors). The offer provide
 wizards for component generation, visualization of the model and animations of
 the analysis, and many other tools for model and results exploration.
@@ -101,7 +100,7 @@ pre/post processing software typically uses a more complex, hierarchal database 
 support higher level parametrization, configuration, and visualization definitions. 
 <br>
 <br> 
-Usually there is some support for programmatically interacting with these datasets
+Usually there is some support for pro grammatically interacting with these datasets
 via an Application Program Interface (API). Commands may be typed individually
 into a prompt, or stored in macros. The language of the commands may proprietary or some standard programming language (often Python) may be adapted ,
 in which case a custom module for accessing the programs internal data set is provided.
@@ -118,18 +117,18 @@ formats like XML, many files are proprietary, task-specific human readable ASCII
 <br>
 <p>The pre and post processing software typically are combined
 with the solver in a single suite from a vendor. In many way this makes sense, however, there are usually short comings
-when trying to develope unique, novel, or multi-disciplanary process. In this case, custom code must be generated. The code may interact with the pro/post processor via its API, the solver via subroutines, or with external datafile that serve as the go-between in the multi-stage process. 
+when trying to develop unique, novel, or multi-disciplinary process. In this case, custom code must be generated. The code may interact with the pro/post processor via its API, the solver via subroutines, or with external datafile that serve as the go-between in the multi-stage process. 
 </p>
 <h2>Python for CAE</h2>
 <br>
-<p>Over the past 5 year, Python scriping and utility development
-has become an increasing dominant method for creating this customizaion
+<p>Over the past 5 year, Python scripting and utility development
+has become an increasing dominant method for creating this customization
 at all stages,
-slowly replacing a myrid assorment of proprietary or obtuse
+slowly replacing a myriad of proprietary or obtuse
 scripting/programming languages.
-The broad adoption of an user friendly yet poweful
-scripting/programmnig language has dramitically improved the capabiliy
-of (non-software) engineers to develope improved CAE processes. <br>
+The broad adoption of an user friendly yet powerful
+scripting/programming language has dramatically improved the capability
+of (non-software) engineers to develop improved CAE processes. <br>
 </p>
 <a id="unDisplayText" href="javascript:hide('toggleText');">
 [Collapse]</a><br>
@@ -148,7 +147,7 @@ a primary skill of their profession. This article does not:
 <p>On that last topic, it is the opinion of the author that there is a large need for widespread
 adoption of said practices. Nevertheless, there is only sporadic use on the vendor side, and the CAE industry in general is heavily proprietary, so end user implementation are generally not considered feasible. Hope we will see a change in the next generation of tool, but until then...</p>
 
-<h1>The A.O.S. Approach to Datafile Processing</h1>
+<!--<h1>The A.O.S. Approach to Datafile Processing</h1>
 
 <p>Admittedly, this acronym was made-up on the spot to prevent an overtly long section title, but nevertheless the following is a categorization of the methods presented here:
 <br><br>
@@ -156,7 +155,7 @@ Agile - Were not trying to develop software, we trying to develop outcomes. We f
 <br><br>
 Organic - new script start small, do something useful (or at least testable) and all stages of growth, and use all natural (build-in) functions
 <br><br>
-Specific - despite its benefits, modularity requires a critical mass and level of maintenince that might not be feasible. Instead we opt for straight forwardness and simplicity we canachieve by tailoring a script to very specific application.</p>
+Specific - despite its benefits, modularity requires a critical mass and level of maintenance that might not be feasible. Instead we opt for straight forwardness and simplicity we can achieve by tailoring a script to very specific application.</p> -->
 
 <!------- Task Oriented ------>
 
@@ -222,20 +221,24 @@ ususal smaller/simpler (extraction) </p>
 <br>
 <p>As mentioned, the below is under construction. The top-level format is more-or-less finalized solidified, however the sections are either empty, stubs, or in early draft status.</p>
 <br><br>
+<p> Section which currently have content:
+<br>
+<li><a href="#regular_expressions" onClick="load('section_regular_expressions', './technique_examples/regular_expressions/re_demo.html');">Regular Expressions</a></li>
+<br><br>
  
 <h1>Programming Techniques</h1>
 <br>
 <p>Now that some task based example have been demonstrated, let's
 take a look from a techniques perspective,
-starting with the most basic and intergrating pieces one by one.</p>
+starting with the most basic and integrating pieces one by one.</p>
 <br>
 <h2>Line Processing</h2>
 <br>
-<p> 'Line Processing' encompassies the breaking down and 'reconstruction' of line.
-A simple file processing program may consits only of s <a>Synchronous File Loop</a> wrapped around a line processor.
+<p> 'Line Processing' encompasses the breaking down and 'reconstruction' of line.
+A simple file processing program may consists only of s <a>Synchronous File Loop</a> wrapped around a line processor.
 (in which case you may refer to this program as a whole as a "Line Processor")
-In more complex programs, there may be many steps between deompostion and resonctruction.
-Still, the line decopposition and reconstruction are foundational components of any datafle processing program.
+In more complex programs, there may be many steps between decomposition and reintroduction.
+Still, the line decomposition and reconstruction are foundational components of any datafile processing program.
 </p>
 
 <!--Synchronous File Loop-->
@@ -248,7 +251,7 @@ Still, the line decopposition and reconstruction are foundational components of 
 <!--String Methods -->
 <div class="titlebar" style="height: 50px; width: 750px;">
 <h2> Line Processing: String Methods <a id="displayText" href="javascript:load('section_string_methods', 'section_string_methods.html');"> + Expand</a></h2>
-<p> An overview of buil-in python string methods </p>
+<p> An overview of built-in python string methods </p>
 </div>
 <div id="section_string_methods"></div>
 
@@ -267,7 +270,7 @@ Still, the line decopposition and reconstruction are foundational components of 
 <div id="section_string_reconstruction"></div>
 
 <!--Regular Expressions -->
-<div class="titlebar" style="height: 50px; width: 750px;">
+<div id="regular_expressions" class="titlebar" style="height: 50px; width: 750px;">
 <h2> Line Processing: Regular Expressions <a id="displayText" href="javascript:load('section_regular_expressions', './technique_examples/regular_expressions/re_demo.html');"> + Expand</a></h2>
 <p> Using regular expressions for advanced conditional checks string decomposition</p>
 </div>
@@ -276,13 +279,13 @@ Still, the line decopposition and reconstruction are foundational components of 
 <br>
 <p>As mentioned above many tasks force beyond the simple
 Synchronous File Loop program structure. Howevey stepping, this scope can be done on one of more of numerous ways.
-From here, the topics are no longer progressional, but can be <b>roughly</b> catergorized as <a>Loop Techniques</a> and <a>Process Structure</a> additionally, relevant genral programming advice is outline in <a>Meta Advice</a>.</p>
+From here, the topics are no longer progressional, but can be <b>roughly</b> categorized as <a>Loop Techniques</a> and <a>Process Structure</a> additionally, relevant genral programming advice is outline in <a>Meta Advice</a>.</p>
 <br>
 <h3>Process Structure</h3>
 <br>
-<p>One way to expand the capcbility is to incorperation
+<p>One way to expand the capability is to incorporation
 additional loops and/or array operations. This goes hand in hand with
-designing Data Strcutes to transport the data from one loops to
+designing Data Structures to transport the data from one loops to
 another. abandoning the synchronous loop for more advanced. Often, we
 have a set of file, one having the data we want and another having the
 format we want.</p>
@@ -306,8 +309,8 @@ Dataset<a id="displayText" href="javascript:load('example_basic_visualize', 'exa
 <br>
 <h3>Loop Techniques</h3>
 <br>
-<p> Regardless of single loop or multi-loop or other processing strusture, the
-Step A to Step B capability of a loop capabilities of any sinlge loop
+<p> Regardless of single loop or multi-loop or other processing structure, the
+Step A to Step B capability of a loop capabilities of any single loop
 can be increased with more advanced <a>Looping Techniques</a></p>
 <div class="titlebar" style="height: 50px; width: 750px;">
 <h3> Loops Techniques: Nesting<a id="displayText" href="javascript:load('example_basic_visualize', 'example_basic_visualize.html');"> + Expand</a></h3>
@@ -321,7 +324,7 @@ can be increased with more advanced <a>Looping Techniques</a></p>
 <div id="example_basic_"></div>
 <div class="titlebar" style="height: 50px; width: 750px;">
 <h3> Loops Techniques: Finite State Machine<a id="displayText" href="javascript:load('example_basic_visualize', 'example_basic_visualize.html');"> + Expand</a></h3>
-<p> Handling strutcured data files using flags and conditions testing </p>
+<p> Handling structured data files using flags and conditions testing </p>
 </div>
 <div id="example_basic_"></div>
 <br>
@@ -330,7 +333,7 @@ can be increased with more advanced <a>Looping Techniques</a></p>
 <p> General, higher level advice for building data processing scripts</p>
 <div class="titlebar" style="height: 50px; width: 750px;">
 <h3> Incremental Build Process and Debugging<a id="displayText" href="javascript:load('example_basic_visualize', 'example_basic_visualize.html');"> + Expand</a></h3>
-<p> A example disucssing scrpt development and trouble shooting technique</p>
+<p> A example discussing script development and trouble shooting technique</p>
 </div>
 <div id="example_basic_"></div>
 <div class="titlebar" style="height: 50px; width: 750px;">
