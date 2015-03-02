@@ -25,7 +25,7 @@ document.write('\
 <li><a href="http://jlittle576.github.io/articles/learning_python.html">> Learning Python</a></li>\
 <li><a href="http://jlittle576.github.io/articles/using_an_ide.html">> Using an IDE</a></li><br>\
 <li><a href="http://jlittle576.github.io/articles/data_parsing/main.html">Intro to CAE Datafile Processing\
-<img src="./images/under_construction.png" height="25" width="25" align="left"></img></a></li>\
+<img src="http://jlittle576.github.io/images/under_construction.png" height="25" width="25" align="left"></img></a></li>\
 <br /><span class="navigation_header2">Misc</span>\
 <ul>\
 <li><a href="http://jlittle576.github.io/articles/ahk_for_scripting_automation.html">AHK for Scripting Automation</a></li>\
