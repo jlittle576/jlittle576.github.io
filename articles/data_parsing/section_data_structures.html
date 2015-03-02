@@ -1,0 +1,41 @@
+<html>
+<link href="../../style.css" rel="stylesheet" type="text/css" >
+
+
+<br><h2>Data structure</h2><br>
+<p>In a simple case, data is in files and we can simply loop through them it performing line operations and writing to an output file.
+More complex situation will required more attention to input, output, and intermediate data structures.
+Ask 'What data do I need to work with?' then, "What data structure(s) do I need it to be in?" then "What do I have to to get it there?".
+Note the data structure is conceptual and for your purposes, a input or output data file may appear to be complex, but you may be able to treat is simply, depending on the operation.
+</p>
+
+<br><h2>Disk (Sorce/Destination) Data Structures</h2>
+<p><br>This article is generally targeted at situations where the input and output data exists as data files. Their formats can generall be categorized as:</p>
+<h4>Delimited Data<br></h4>
+<p>Typically test data, often describes as rows and columns, which may have labels, delimited by tabs, spaces, commas, etc. 3 or more deminsional possible with sequencing.</p>
+<h4>Block/Hierarchal Data<br></h4>
+<p>Date is organized into one or more styles of 'blocks' or 'elemens', which typically have 'properites' and/or 'raw data'.
+In more complex files, there may be multiple levels of parent-child relationships. These files maby be a purpose-designed ASCII format, or a standardized one like XML.</p>
+<h4>Multiple files<br></h4>
+<p>Input and output data may span multiple files, and maybe even be arranged in a directory structure with multiple levels.
+Though they have to be handled a little differently, this is not fundamentaly different than internal data file organizaion.</p>
+<h4>Non-file<br></h4>
+<p>Input could be 'hardcoded' into the script or passed as arguments. Output could be displayed are applied to the in-session memory of another program</p>
+
+
+<br><h2>Program (memory) Data</h2>
+<p><br>For simple tasks, we will be able to treat the data on line at a time, perhaps temporarily needing an array to hold some values. 
+More complex tasks will require sections or all of the data to be present at once for manupilation.</p>
+<h4>Arrays<br></h4>
+<p>Arrays will have 1,2,3 or more dimensions and some inherit 'order' (i.e. indicies). The output data order would typically be the same as input, or it can be acheived throught some form of alphanumeic sorting and/or filtering</p>
+<h4>Dicts/Hash Tables<br></h4>
+<p>For more complex tasks, you will find that relying on array order becomes tedious. 
+Instead, data in hash tables (called dicts in python) have 'labels' or keys which are used to store and retrieve data.</p>
+<h4>Nesting<br></h4>
+<p>Arrays and hash table can be nested as much as needed to accomodate the date the need to be transferred</p>
+<h4>Specialized Structures<br></h4>
+<p>For standardzied mark-up languages, there are parser libraries which have special data objects that data can be sotred in.
+They are conceptually similar to nested hash tables, but have special functions for accessing, storing data, and for file IO. </p>
+
+
+</html>

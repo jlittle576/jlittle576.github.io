@@ -1,0 +1,106 @@
+<html>
+<link href="../../../../style.css" rel="stylesheet" type="text/css" >
+<pre>
+<comment># The regular expression language has powerful string matching capabilities</comment>
+<comment># It's python implementation is called 're'</comment>
+import re
+
+<comment># The re module has a function search() which takes a reqular expression and the sting to be searched</comment>
+hay_stack = <strings>"hay hay hay needle hay"</strings>
+pattern = 'n\w'   <comment># pattern reads 'n followed by a wordchar (letters or an underscore)"</comment>
+match = re.search(pattern, hay_stack)
+print match
+<comment># >>> <_sre.SRE_Match object at 0x...</comment>
+
+
+<comment># This just confirms that match is in fact an object</comment>
+<comment># TO see if The object can be used like a boolean</comment>
+
+if match:
+    print <strings>'Found it'</strings>
+<comment># >>> Found it</comment>
+    <comment># To get the portion of the string that matched:</comment>
+    print match.group(0)
+    <comment># >>> ne</comment>
+
+<comment># Now we use a term quantifier '+' meaning on or more</comment>
+print re.search(<strings>'n\w+'</strings>, <strings>'hay needle hay'</strings>).group(0)
+<comment># >>> needle</comment>
+
+<comment># Finall returns all matches in a string</comment>
+print re.findall(<strings>'n\w+'</strings>, <strings>'needle hay needle hay hay'</strings>)
+<comment># >>> ['needle','needle']</comment>
+
+<comment># note that findall returns a array, not an object,</comment>
+<comment># so the group() method is not required</comment>
+
+<comment># Now suppose we want and word stringA starting with 'n or f'</comment>
+print re.findall(<strings>'[nf]\w+'</strings>, <strings>'hay fork hay needle'</strings>)
+<comment># >>> fork, needle</comment>
+
+<comment># Or anything but with a letter after h</comment>
+print re.findall(<strings>'[^h]\w+'</strings>, <strings>'spoon hay fork hay needle'</strings>)
+<comment># >>> ['ay', ' fork', ' hay', ' needle']</comment>
+
+<comment># Not exactly what we wanted</comment>
+<comment># Lets add a term to grab whitespace before the 'not n'</comment>
+print re.findall(<strings>'\s[^h]\w+'</strings>, <strings>'hay fork hay needle'</strings>)
+
+<comment># the output now contains a space</comment>
+<comment># which we need for a postiive match, but don't want in out results</comment>
+<comment># lets use grouping to delineate pattern from output</comment>
+print re.search(<strings>'\s(\w+)\s'</strings>, <strings>'hay needle hay'</strings>).group(1)
+<comment># >>> needle</comment>
+<comment># note how we used group(1) instead of 0, number above zero correspond to groups</comment>
+
+<comment>#there can be many groups</comment>
+print re.search(<strings>'\s([^h])(\w+)\s'</strings>, <strings>'hay needle hay'</strings>).group(1)
+<comment># >>> n</comment>
+print re.search(<strings>'\s([^h](\w+))\s'</strings>, <strings>'hay needle hay'</strings>).group(2)
+<comment># >>> eedle</comment>
+
+<comment>#the method groups() returns all groups above 0</comment>
+print re.search(<strings>'\s([^h])(\w+)\s'</strings>, <strings>'hay needle hay'</strings>).groups()
+<comment># >>> ['n','eedle']</comment>
+
+<comment># groups can be nested (numbering goes by leading parenthesis only)</comment>
+print re.search(<strings>'\s([^h](\w+))\s'</strings>, <strings>'hay needle hay'</strings>).groups()
+<comment># >>> ['n','eedle']</comment>
+
+<comment># findall works with groups too</comment>
+print re.findall('\s[^h]\w+\s', 'hay hay needle hey fork hey')      <comment># no groups findall</comment>
+<comment># >>> [' needle ', ' fork ']</comment>
+print re.findall('\s([^h]\w+)\s', 'hay hay needle hey fork hey')    <comment># single group findall</comment>
+<comment># >>> ['needle', 'fork']</comment>
+print re.findall('\s([^h])(\w+)\s', 'hay hay needle hey fork hey')  <comment># multi-group findall</comment>
+<comment># >>> [('n', 'eedle'), ('f', 'ork')]</comment>
+
+
+<comment># /d is the term for numbers</comment>
+print re.search(<strings>'\d+'</strings>, <strings>'mass = 23.00'</strings>).group(0)
+<comment># >>> 23</comment>
+
+<comment># but number strings can contain character other than digits,</comment>
+<comment># so put multiple terms in brackets and put our + quantifier outside</comment>
+print re.search(<strings>'[\d\.]+'</strings>, <strings>'mass = 23.00'</strings>).group(0)
+
+<comment># taking it further we can even catch scientific notation</comment>
+print re.search(<strings>'(\w+)\s*=\s*([\d\.Ee\+-]+)'</strings>, <strings>'mass = 1.2934E+09'</strings>).groups()
+<comment># >>> ('mass', '1.2934E+09')</comment>
+
+<comment># by combining search() and findall, we can quickly breakdown complex string into 'pure' data</comment>
+line = <strings>'INERTIA = 4.00E+00     1.32E+01  4.00E-00'</strings>
+match = re.search(<strings>'(\w+)\s*=(.*)'</strings>, line)
+print match.groups()
+numbers = re.findall(<strings>'[\d\.Ee\+-]+'</strings>, match.group(2))
+print numbers
+<comment># >>> ['4.00E+00', '1.32E+01', '4.00E-00']</comment>
+
+<comment># Once strings are decomposed fully, we can easily type cast, manipulate, and build new strings</comment>
+scale_factor = 1.2
+ixx, iyy, izz = [float(x) * scale_factor for x in numbers]
+print 'INERTIA = %12.4f %12.4f %12.4f' % (ixx, iyy, izz)   <comment># see topic 'string formatting'</comment>
+<comment># >>> INERTIA =       4.8000      15.8400       4.8000</comment>
+
+</pre>
+</html>

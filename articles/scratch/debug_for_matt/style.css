@@ -1,0 +1,235 @@
+html, body {
+	background-image:url('./background.png');
+	background-font-family:Calibri;
+	color:#151515;
+	font-family:"Trebuchet MS", sans-serif;
+	min-width:700px;
+	max-width:1200px;
+  margin: 0px auto;
+      padding-left:12px;
+  
+	}
+span{font-weight: bold;}
+
+#content {
+    border:1px solid #DBDBDB;
+    background-font-family:Calibri;
+	color:#191919;
+    overflow:auto;
+    padding-left:30px;
+    padding-right:30px;
+    padding-top:30px;
+    padding-bottom:30px;
+	}
+	
+#container {
+	margin:0 auto;
+	height:100%;
+	width:100%
+	}
+	
+#vertinav {
+	position:fixed;
+	float:right;
+	padding-left:20px;
+	}
+	
+#header{
+	width:100%;
+	text-align:right;
+	}
+	
+#navigation {
+	width:100%;
+	height:14px;
+	text-align:right;
+	background-font-family:Calibri;
+	color:#333333;
+	}
+	
+#footer {
+    clear: both;
+    position: relative;
+}
+
+#footer p {
+	text-align:right;
+	clear: both;
+	font-family:Calibri;
+	color:#00AAFF;
+	margin:0;
+	margin-right:295px;
+	font-weight:bolder;
+	font-size:12px;
+	line-height:1;
+	padding:0px;
+	}
+	
+
+	
+.navicons{
+	margin: 2px 5px 2px 0;
+	vertical-align:middle;
+	}
+	
+.navicons:hover {
+	border-bottom:1px #ffffff dashed;
+	}
+
+h1 {
+	margin:0px;
+	font-size:22px;
+	font-family:Calibri;
+	color:#00AAFF;
+	}
+
+h2 {
+	margin:0px;
+	font-size:18px;
+	font-family:Calibri;
+	color:#00AAFF;
+	}
+
+h3 {
+	margin:0px;
+	font-size:16px;
+	font-family:Calibri;
+	color:#00AAFF;
+	}
+
+h4 {
+	margin:0px;
+	font-size:14px;
+	font-family:Calibri;
+	color:#00AAFF;
+	}
+
+.h2 {
+	margin:0px;
+	font-size:16px;
+	font-family:Calibri;
+	color:#00AAFF;
+	}
+
+.h2:hover {
+	margin:0px;
+	font-size:16px;
+	font-family:Calibri;
+	color:#E8BF6A;
+	}
+
+
+.navigation_header {
+	font-size:22px;
+	font-family:Calibri;
+	color:#00AAFF;
+	margin:0px;
+	line-height: 200%
+	}
+
+.navigation_header2 {
+	font-size:17px;
+	font-family:Calibri;
+	color:#9ACBFC;
+	margin:0px;
+	line-height: 180%;
+	}
+		
+
+	
+#vertinav ul {
+	list-style: none;
+	display:inline;  
+	}
+#vertinav li a{
+	margin-left:6px;
+	font-family:Calibri;
+	color:#ffffff;
+	text-decoration:none;
+	}
+
+#vertinav li a:hover {
+	border-left: 3px solid #00AAFF;
+	}
+	
+
+	
+p {
+	font-family:Calibri;
+	color:#FFFFFF;
+	font-size:17px;
+	margin: 0 5px 20px 5px;
+	text-align: justify;
+	}
+	
+a {
+	font-family:Calibri;
+	color:#E8BF6A;
+	text-decoration:none;
+	}
+	
+a:hover {
+	font-family:Calibri;
+	color:#00AAFF;
+	text-decoration:none;
+	}
+
+
+li {
+	font-family:Calibri;
+	color:#FFFFFF;
+	}
+ol {
+	font-family:Calibri;
+	color:#FFFFFF;
+	}
+
+comment {
+	font-family:Calibri;
+	color:#dddddd;
+	}
+
+strings {
+	font-family:Calibri;
+	color:#FFAC59;
+	}
+
+.titlebar {
+    /* Below are styles for the codebox (not the code itself) */
+    border:1px solid #DBDBDB;
+    /*border-bottom:2px; */
+    background-font-family:Calibri;
+	color:#00AAFF;
+    width:500px;
+    height:25px;
+    overflow:hidden;
+    padding:4px;
+    vertical-align:middle;
+}
+
+.titlebar p {
+    line-height:24px;
+    vertical-align:middle;
+}
+    
+.codebox {
+    /* Below are styles for the codebox (not the code itself) */
+    border:1px solid #DBDBDB;
+    background-font-family:Calibri;
+	color:#0B0B0B;
+    width:500px;
+    overflow:auto;
+    padding:4px;
+}
+
+pre {
+	font-family:Calibri;
+	color:#00AAFF;
+	}
+
+.codebox pre {
+    /* Styles in here affect the text of the codebox */
+    font-size:0.9em;
+    /* You could also put all sorts of styling here, like different font, font-family:Calibri;
+	color, underline, etc. for the code. */
+}

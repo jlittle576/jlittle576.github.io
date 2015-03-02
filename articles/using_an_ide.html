@@ -1,0 +1,200 @@
+<html>
+<head>
+<link href="../style.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="favicon.ico">
+<title>Using an IDE</title>
+<script src="../js/top.js" type="text/javascript"></script>
+<h2>
+  <a name="Using an IDE"><span style='font-size:14.0pt;color:#00AAFF;'>Using an
+  IDE</span></a>
+</h2><br />
+<p>
+The third part in the <a href="getting_started_with_python.html">Getting Started with Python</a> series,
+this article is discusses the benefits of using an IDE (Integrated Development Environment) almost exclusively
+for both developing and executing code, recommends pyCharm, and discusses how to configure pyCharm.
+</p>
+<p>
+As with the other articles in the series, <a href="./learning_python.html">Learning Python</a> and <a href=
+"./using_an_ide.html">Using an IDE</a>, it is targeted at beginners who want to learn a general purpose
+programming for personal use and/or to supplement their professional skillsets.
+</p>
+<h2>
+Article Navigation
+</h2>
+&nbsp;&nbsp;&nbsp;<a href="#Benefits%20of%20Using%20an%20IDE">Benefits of Using an
+IDE</a><br />
+&nbsp;&nbsp;&nbsp;<a href="#Choosing%20an%20IDE">Choosing an IDE</a><br />
+&nbsp;&nbsp;&nbsp;<a href="#pyCharm%20Quick%20Start">pyCharm Quick Start</a><br />
+<br />
+<h2>
+  <a name="Benefits of Using an IDE"><span style='font-size:14.0pt;color:#00AAFF;'>Benefits
+  of Using an IDE</span></a><a href="#top">&nbsp;&nbsp;&nbsp;back to top</a>
+</h2><br />
+<p>
+  Most IDE's will have the basic features below, which will be beneficial to programmers at
+  any level:
+</p>
+<p>
+  - Basic error identification<br />
+  &nbsp;&nbsp;-e.g. using a variable not yet declared<br />
+  - Automatic indenting<br />
+  - Code completion<br />
+  &nbsp;&nbsp;- works like google search auto-complete<br />
+  &nbsp;&nbsp;- imported module attribute/methods<br />
+  &nbsp;&nbsp;- internal variables and functions<br />
+  - Code 'Structure' navigation<br />
+  - 'Click to navigate to code' on code errors<br />
+</p>
+<p>
+  Of course, if you start to get serious about programming, there are many other features
+  you'll get into
+</p><br />
+<h2>
+  <a name="Choosing an IDE"><span style='font-size:14.0pt;color:#00AAFF;'>Choosing an
+  IDE</span></a><a href="#top">&nbsp;&nbsp;&nbsp;back to top</a>
+</h2><br />
+<p>
+  JetBrains pyCharm, that was easy!
+</p>
+<p>
+  pyCharm is the best python IDE out there right now. A few years ago, this spot was held
+  by a Java IDE called Eclipse with a Plugin Called pyDev. PyCharm pretty much better
+  all-around in my opinion, as well as the community at large (<a href=
+  "http://www.google.com/trends/explore#q=pydev%2C%20pycharm">pyCharm vs pyDev Google
+  Trends comparison</a>). pyCharm is used by professional software developers and amatures
+  alike.
+</p><br />
+<h2>
+  <a name="pyCharm Quick Start"><span style='font-size:14.0pt;color:#00AAFF;'>pyCharm Quick
+  Start</span></a><a href="#top">&nbsp;&nbsp;&nbsp;back to top</a>
+</h2><br />
+<h2>
+  Prep
+</h2><br />
+<p>
+  Go ahead an create a directory for your python code. I highly recommend coding out of a
+  Dropbox directory. My code lives in a folder [dropbox]/code/projects and then
+  subdirectories from there for different projects. I keep a subdirectory for
+  examples/tutorials, like those from the <a href=
+  "https://developers.google.com/edu/python">Google Python Class</a>
+</p>
+<p>
+  You should also have Python installed at this point. Following my suggestion, that will
+  be version <a href="https://www.python.org/download/releases/2.7.6/">2.7.x</a> with
+  default selections.
+</p>
+<h2>
+  Installation
+</h2><br />
+<p>
+  Download <a href="http://www.jetbrains.com/pycharm/download/">pyCharm Community
+  Edition</a>. The professional edition includes a lot of extra great features which you
+  can research on JetBrains' site, and its a steal for only $100, but Community Edition is
+  free and has all of the core Python functionality you need, especially as a beginner.
+</p>
+<p>
+  Install pyCharm with defaults selections. I install to Dropbox and use the same
+  installation from multiple computers. The executable is at [install
+  dir]/bin/pyCharme.exe, and I just make separate shortcuts to that on each computer I use
+  (the paths are different).
+</p>
+<h2>
+  Configuration
+</h2><br />
+<p>
+  You won't always see the two screens shown below. Don't worry, I'll include instructions
+  for doing everything from the main GUI as well.<br />
+  <br />
+  On first startup you will see:<br />
+  <img width=600 src="using_an_ide/pycharm_init_config.png" alt="" /><br />
+  The defaults are fine, thought I personally like the Darcula theme a lot.
+</p>
+<p>
+  The next screen will be shown whenever no project is open (such as after a fresh
+  installation):<br />
+  <img width=600 src="using_an_ide/welcome_screen.png" width=600 alt="" /><br />
+  Pick 'Open Directory' and pick the folder you've created for your code. This will create
+  a 'project' there. Until you manually close it, starting pyCharm will load up this
+  'project' automatically, e.g. you will go straight to the main interface.
+</p>
+<h2>
+  Linking to the Python Executable
+</h2><br />
+<p>
+  At this point, we'll assume we're at the standard interface and go ahead and set-up
+  configure the Python executable
+</p>
+<p>
+  - Goto File -&gt; Settings<br />
+  - From the list on the left, Expand 'Python Interpreter' -&gt; Select 'Python
+  Interpreters'<br />
+  - Click '+' (top right)<br />
+</p>
+<p>
+  If installed at the default location, the context menu that appears should have a
+  selection like C:/python27/python.exe<br />
+</p>
+<p>
+  Otherwise pick 'Local...' and navigate to python.exe inside the desired Python
+  installation<br />
+</p>
+<p>
+  At this point you should be seeing something like:<br />
+  <br />
+  <img width=600 src="using_an_ide/pyCharm_interp_config.png" alt="" /><br />
+</p>
+<p>
+  Click OK.
+</p>
+<h2>
+  Main GUI - Run your first script
+</h2><br />
+<p>
+  At this point you should be at the main GUI and have a project/directory opened where you
+  want to keep your code. If you are at the main GUI, you have a project open. If its not
+  at the location you want, go to File -&gt; Open Directory... If there no files in your
+  project dir, the GUI will look something like:<br />
+  <img width=600 src="using_an_ide/main_1.png" alt="" /><br />
+  Mouse over the square in the bottom left and click 'Projects' to show the Projects
+  pane<br />
+  <img width=600 src="using_an_ide/main_5.png" alt="" /><br />
+  Now the GUI should look like:<br />
+  <img width=600 src="using_an_ide/main_2.png" alt="" /><br />
+  - Right click on the main project folder ('sample_dir' in this case)<br />
+  - New -&gt; Python file<br />
+  - Name it 'hello'<br />
+  - Enter into the file editor<br />
+  <br />
+</p>
+<div class="codebox">
+  <pre>print 'hello'</pre>
+</div><br />
+<br />
+<img width=600 src="using_an_ide/main_3.png" alt="" /><br />
+<p>
+  - Go to Run -&gt; Run..<br />
+  - Pick 'hello' from the small pop-up<br />
+  - The Terminal should appear and show the output of the programs<br />
+  <br />
+  <img width=600 src="using_an_ide/main_4.png" alt="" /><br />
+</p>
+<p>
+  Congrats, you're now a pyCharm user!
+</p>
+<h2>
+  Tips
+</h2><br />
+<p>
+  - Run -&gt; Run will always run the last script, use Run -&gt; Run.. to get the selection
+  menu to run another script<br />
+  - If you need to have files outside of a single large projects directory, multiple
+  projects/directories can open at once<br />
+  &nbsp;&nbsp;&nbsp;- File -&gt; Open -&gt; Select Folder<br />
+  &nbsp;&nbsp;&nbsp;- Select 'open in Current Window' and 'Add to Currently OPen
+  Projects'<br />
+  - As your scripts start to get longer, you'll want to start using the 'Structure' pane to
+  quickly navigate between functions/classes/etc<br />
+  - Set convenient Hotkeys for Run and Run... you will be pressing them a lot<br />
+  &nbsp;&nbsp;&nbsp;- File -&gt; Settings -&gt; (From list on left) Keymap<br />
+</p><br />
+<script src="../js/bottom.js" type="text/javascript"></script>

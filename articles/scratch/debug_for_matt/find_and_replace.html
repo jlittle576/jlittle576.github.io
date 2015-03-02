@@ -1,0 +1,49 @@
+<html>
+<link href="style.css" rel="stylesheet" type="text/css" >
+<script src="bootstrap.js"></script>
+<script src="bootstrap.min.js"></script>
+<script src="jquery.min.js"></script>
+<script src="my_script.js"></script>
+<div class="titlebar">
+        <p>
+          find_and_replace.py
+        </p>
+      </div>
+
+
+<div class="codebox">
+<pre>
+<comment>#Find and Replace</comment>
+
+<comment>#Creates output.txt which is a copy of input.txt</comment>
+<comment>#except with 'brown' replace with 'blue'</comment>
+
+<comment># open() files for reading and writing</comment>
+fIn = open(<strings>'blue.txt'</strings>, <strings>'r'</strings>)
+fOut = open(<strings>'brown.txt'</strings>, <strings>'w'</strings>)
+
+<comment># fIn and fOut are now <a href="#" title="<span class='red'>This is a <a href='#'>link</a></span>">Tooltips</a> 'objects', more specifically 'file objects'</comment>
+<comment># object have attributes, e.g. fIn.mode returns 'r'</comment>
+<comment># and methods, e.g. fOut.write(str) writes str to fOut</comment>
+<comment># also, they are 'built in', meaning open() does not have to be imported</comment>
+
+for line in fIn:
+<comment># 'for x in y'</comment>
+<comment># where y is any iterable object (file object, array, string, etc)</comment>
+<comment># and x is the loop variable</comment>
+
+    <comment># string.replace()</comment>
+    line = line.replace(<strings>'blue'</strings>, <strings>'brown'</strings>)
+
+    <comment># file write</comment>
+    fOut.write(line)
+
+    <comment># python control structures have no 'end' statement</comment>
+    <comment># the structure ends as soon as the indention reverts</comment>
+
+<comment>#close the files</comment>
+fIn.close()
+fOut.close()
+
+</pre></div>
+</html>

@@ -1,0 +1,27 @@
+<html  style="min-width:650px;"><body style="min-width:650px;">
+<link href="../../style.css" rel="stylesheet" type="text/css" >
+<script src="../../js/top.js" type="text/javascript"></script>
+
+<p>Moving on from the Synchrounous File Loop, we now look at what two do when there are 2 or more input file.
+Basically, we just use multple loops. One key difference, is that instead of simply sending the input directly to the output,
+we'll be creating and populating some data structures.
+<br>
+<br>- for line in format file:
+<br>-     write the line to template string, replacing data with string format parameters
+<br>- for line in data file:
+<br>-     add data and data identification tags (keys) to dict
+<br>- merge the dictionary to the template, write to output file
+<br>
+<br> New concepts: <a> data structure implementation</a>, <a>dicts</a>
+<br> New methods: <a>str % dict</a>, <a>str.split()</a>, <a>str.join()</a>*
+<br><br>*Despite being a string operation, this is actually to join arrays. E.g., To comma-join some array the syntax is <ic>new_array = ','.join(array)</ic>
+</p>
+
+<div class="titlebar" style="height:50px;width:650px;">
+<h2>spring_format_convert.py</h2>
+<p>Conver some numerical values from metric to imperial</p>
+</div>
+<iframe seamless src='./examples/spring_format_convert/spring_format_convert.html' frameborder=1 width=656px height=350px></iframe>
+
+
+</body></html>

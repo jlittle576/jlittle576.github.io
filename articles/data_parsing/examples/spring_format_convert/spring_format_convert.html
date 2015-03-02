@@ -1,0 +1,53 @@
+<html>
+<link href="../../../../style.css" rel="stylesheet" type="text/css" >
+<pre>
+__author__ = <strings>'t3281j0'</strings>
+
+import re
+
+<comment>#Spring convert</comment>
+<comment>#Combine the format of coil_spring_100N.xml and the date of coil_spring_50N.spr into a new coil_spring_50N.xml file</comment>
+f_template = open(<strings>'coil_spring_100N.xml'</strings>, <strings>'r'</strings>)
+f_source = open(<strings>'coil_spring_50N.spr'</strings>, <strings>'r'</strings>)
+f_destination = open(<strings>'coil_spring_50N.xml'</strings>, <strings>'w'</strings>)
+
+
+
+<comment>#get the desired data out of the source file</comment>
+stiffness_data = []
+for line in f_source:
+
+    match = re.match(<strings>'^(-*\d+\.*\d*)\s+(-*\d+\.*\d*)'</strings>, line)
+    <comment># this pattern matches to a line with two number strings (which may or may not start with with '-' and contain '.')</comment>
+
+    if match:
+        stiffness_data.append(match.groups())   <comment># match.groups() returns a tuple of all matched groups, defined py parenthesis in the pattern</comment>
+
+
+<comment>#Loop through the template, detecting the data section and writing the input data instead</comment>
+data_written = False
+for line in f_template:
+    number_search = re.match(<strings>'^\s+(-*\d+\.?\d*)\s+(-*\d+\.?\d*)'</strings>, line)
+
+    if number_search is None:    <comment># not a data line, transcribe the non-data template line directly</comment>
+        f_destination.write(line)
+
+    else:
+
+        if not data_written:    <comment># on first detection of the template data, write the source data instead</comment>
+
+            for row in stiffness_data:
+                f_destination.write(<strings>'  %s  %s\n'</strings> % row)
+            data_written = True     <comment># flag for current if statement, prevent multiple writing of source data</comment>
+
+        else:   <comment># do nothing if number_search and data_written</comment>
+            continue
+
+
+
+
+
+
+
+</pre>
+</html>

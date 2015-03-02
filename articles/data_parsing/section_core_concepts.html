@@ -1,0 +1,31 @@
+<html>
+<link href="../../style.css" rel="stylesheet" type="text/css" >
+
+</p><p>Generally we will loop throug the input data while generating the output data. 
+This can be done in a single loop, or as a multistage process with intermediate data storage structures. 
+In the later case, each loop will still have its own input and output data.</p>
+
+<h4>Initializaion<br></h4>
+<p>Prior to beginning the loop, files are initiated by using open(file_name, 'w') for writing, open(file_name, 'r') for reading. 
+Basic data strucure are initialized by their respecive methods, e.g. array_name = [] or dict_name = {}
+Locical variables are also set to their <a href="http://en.wikipedia.org/wiki/Sentinel_value">sentienial values</a></p>
+
+<h4>Iteration<br></h4>
+<p>In python iteration is commonly done by this: if done by 'for [item] in [iterable]:' <br>
+Infact, the simplicty is a great example of why python is so great (we would use the adjective 'pythonic' to express how intuitive/great this method is)
+[iterable] is anything that is sort of like an array is iterable, commom examples are files, basic arrays, or hash table.
+[item] is the loop storage for the line/row/section of data.</p>
+
+<h4>Parsing<br></h4>
+<p>In some cases the iteration may not be throught the input data, or there may be multiple inputs.
+In this case we need to generate indexes to call our source data. The imcrementing of this index could be 1-to-1, intermediate,
+could call hash tables using soem data from the iterable, or something even more complex.
+
+<h4>Construction<br></h4>
+<p>Files are writen line by line using write(), arrays are added to using array_name.append(), and hash table are populated like dict_name['key_name'] = value.
+In the simplist case, one data will be generated for each input data iterated, but it can be less frequent using conditional statements or caching, or more frequent using by performing data decomposition 
+(for each generation there is an equivalen mutli-generation command) </p>
+
+
+
+</html>

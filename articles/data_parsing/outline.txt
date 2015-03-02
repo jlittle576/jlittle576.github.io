@@ -1,0 +1,213 @@
+intro
+
+	concepts:
+		file objects
+		iteration
+		array methods
+		dimensionality and structure
+	
+
+	
+	ex: find & replace script
+
+
+	
+Basic File Parsing
+
+
+	concepts:
+	    synchronous file parser
+		conditional treatment
+		string deconstruction
+		string reconstruction
+		regular expressions
+
+		
+		
+
+		Synchronous File Loops
+		
+
+			
+			
+			While the replace script can be useful, we often need to do soemthing a bit more involved
+			with the line. A typically example casue would to be to break the string down into smaller strings, and/or other types of data,
+			maye maipulated, then reassemble it into another format, which we'll call <a>Text Deconstruction</a> and <a>Reconstruciton</a>.
+			
+			Also, sense file often have section that need to be implemented differently, we'll like need some <a>Conditional Behavior</a>
+			
+			
+			
+		Text Deconstruciton
+		
+
+			Basic line deconstruction can be done using str.split() tranfsform the line onto an array.
+			Before the the line can be cleaned with string.replace(). ( There is no string.remove(), instead
+			replace with ''). 
+			
+			Leading and trailing chachter can be removed with str.lstrip() and str.rstrip()
+			
+			snip: str.lstrip and str.rstrip()
+
+			Lines can be deconstructed into strings or, on a n as needed basis, actually into their 'proper' format, e.g. intergers and floats.
+			
+			ex. deconstruct sting into floats
+			
+			For simple tasks, we can take the pieves we want and assignment to variables, but for more complex tasks a dict is probably better.
+			
+			A more powerful deconstruction method is <a>Regular Expressions</a> (see below)
+			
+
+			
+		Text Reconstruction
+			
+			
+			For reconstruction, an array can be converted into a line with the str.join('') command
+			
+			snip: str.join()
+			
+			For more precise control, string formatting can be used. 
+			
+			snip: formated string print
+			
+			String formatting isn't limeted to a since line, multiple lines or even whole files can be string formatted.
+
+
+		Conditional Behavior
+			
+			
+			
+		Regular expressions
+			
+			More powerful tool for conditions checking and string deconstruction is regular expresions, a.k.a. regex. In, the library is called simple 're'
+			A very good intoduction to regex (any python in general) can be found in the google paython class. 
+						
+
+		
+		
+		
+		Additional Techniques
+
+		Hadcoded Input			- Hardcode text instead reading from a file
+		Multiple Outputs		- Wrapping everything in a loop to make mupltiple files
+
+		
+		
+		 What's Next
+		 
+			These simple methods, combined with a basic understanding of Python, are definitely able to create some time saving 
+			datafile processing scripts. To expand our capabilites...
+		
+
+		
+Preparing for external use
+
+		Command Line Options	- 
+		User Interaction		- Getting command line options 
+		
+		
+		 
+
+		 
+
+			
+			
+		 
+Intermediate Looping Methods
+		
+	concepts:
+		nesting
+		finite state machine
+		caching
+		working with multple files folders
+		
+
+		
+		Some time the affect of condtional treatment can be delayed using flags
+		
+		snip: flag set/check
+
+		Other times, data is needed from previous line to determine what to do in the current iterations.
+		In the smplest case, the data is simple a boolean, or a flag.
+		
+	Caching
+	
+		Sometime multple lines from the input correspond to the output
+		
+		
+		
+		string deconstruction
+		string reconstruction
+		regular expressions
+
+	after the basic concepts, there are two general direction you can go to improve you capabilities:
+	improving what the loop can do, or increasing the number of loops
+	
+
+	
+	Multiple Inputs		- 
+
+
+
+Sequential Looping
+
+	A anther approach hod handling mroe complex data tasks is to switch from the synchronous to a multiple loop strategy.
+	As oppoed to parsing the input data direct to output data, one loop will load a data structure, another will unload it.
+	More complex program may feature more loops inbetween with both input adn out being data structures.
+
+
+
+	
+	Data Structures
+	
+	Most peoplar are familiar with some data structures like arrays and tables.
+	Each type ofstructure will have one or more 'program' implementations (e.g. in Python list, tuple, and dicts)
+	and also 'disk' implementation (e.g. spreadsheets)
+	
+	We would say that a list is '1 dimensional' and tables have 2 or mor dimensions, but we need to bring a few more concepts
+	to develop a working understanding of data strutctre, primarily 'labels' and 'reference'.
+	
+	Labels are simple. a typical spreadsheet will be a table with row and column labels. While it may be possible to treat the label cells
+	like part of the table in some respects, the diference is significant. A 2d table with row/column is jsut that, a labeled 2d table.
+	Technically this is called a hash table 
+	
+	
+	
+	
+	
+	
+	
+now we've seen how the synchronous loops capabilities can be expanded, data can be filtered
+and compressed, but there are still many tasks (some quite simple) that still can't be handles.
+
+
+as opposed to synchronous looping, where the input source directly into an output soruce,
+sequential loops additionally involve the loading and unloading of data structures.
+
+though the structure is fundamentally different, each individual loop is not fundamentally different,either the input of
+ouput (maybe both) of each loop is a data structure, not a file object.
+
+many of the same techniques will be used. THe primary difference is the 
+
+	concepts:
+		sequential loops
+		transformation
+		data structure
+		
+		
+	The data structure is the 'variable/datum/list/vector/matrix/table/spreadsheet'. Theses basic structures vary only in number of dimensions.
+	A single number has 0 dimensions, string, are 1d arrays of characters (or chars). An array of number would be 1 dimensional,
+	an and array for strings would be 2 dimensional. There can all be arrays of arrays, allow for any number of dimensions.
+	
+	However, dimensionality and size aren't the only attributes a dataset can have, it can also have structures, which involved
+	labels, reference, and non-homogeneous nesting.
+	
+	
+	
+		
+	ex: reorder and transform a table
+	ex. restructure a nested directory for files into a spread sheet
+	
+
+
+

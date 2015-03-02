@@ -1,0 +1,337 @@
+<html>
+<head>
+<link href="../style.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="favicon.ico">
+<title>Getting Up and Running</title>
+<script src="../js/top.js" type="text/javascript"></script>
+<h2>
+Getting Up and Running
+</h2><br />
+<p>
+The first part in the <a href="getting_started_with_python.html">Getting Started with Python</a> series,
+this article is intended to convince you that Python is (probably) the single best
+programming language for you, let you know which version to pick, and how to get up and
+running.
+</p>
+<p>
+As with the other articles in the series, <a href="./learning_python.html">Learning Python</a> and <a href=
+"./using_an_ide.html">Using an IDE</a>, it is targeted at beginners who want to learn a general purpose
+programming for personal use and/or to supplement their professional skillsets.
+</p>
+<h2>
+Article Navigation
+</h2>
+<p>
+<br />
+<a href="">Why Python</a><br />
+<a href="">Which Version</a><br />
+<a href="">Installing/Running Python</a><br />
+<br />
+</p>
+<h2>
+<a name="Why Python?"><span style='font-size:14.0pt;color:#00AAFF;'>Why
+Python?</span></a><a href="#top">&nbsp;&nbsp;&nbsp;back to top</a>
+</h2><br />
+<h3>
+Simple yet Effective
+</h3><br />
+<p>
+Python has minimal syntax. It look more like English than any other popular language.
+Despite its simplicity, a line of Python can be highly efficient, often accomplishing
+what would take multiple lines in "low(er)-level" languages like Java or C++. These two
+qualities make it both quick to learn, and quick to code. Quick to code means both that
+its take less typing to accomplish a task, and that it tends to take much less debugging
+than programs with stricter rules.
+</p>
+<h3>
+Strong, and Getting Stronger
+</h3><br />
+<p>
+Python is very strong AND is still on the rise. The two most popular languages that closely compare
+to Python are Perl and Ruby, checkout this <a href=
+"http://www.google.com/trends/explore#q=%22python%20programming%22%2C%20%22perl%20programming%22%2C%20%22ruby%20programming%22&amp;cmpt=q">
+google trends comparison of the 3</a>
+</p>
+<h3>
+Modules, modules, modules
+</h3><br />
+<p>
+Python has a huge community and lots of great modules, and it's popularity is not focused
+on a specific is niche, it has strongholds in web-development, game development, and
+scientific/engineering community. In the field of Computer Aided Engineering, Python APIs() are
+nearly ubiquitous. It has great cross-platform capabilities and GUI libraries. There are
+several very popular libraries written in other language that have great Python
+"bindings".
+</p>
+<h3>
+Press the easy button
+</h3><br />
+<p>
+The other benefit Python's popularity is the sheer amount of material available on line.
+One invaluable resource is <a href=
+"http://stackoverflow.com/">stackoverflow</a> (you don't have to actually go there, just
+google your question, SO posts will typically be the 1st results). Questions are posted
+and responses are 'voted up'; the top response is often an great example with an in-depth
+explanation. With 300k+ Python posts, chances are you're quest already has a great answer
+posted. There is also an abundance of larger tutorials and walkthroughs all over the web
+for about anything you'll be interested in.
+</p><br />
+<h2>
+Why not to pick Python
+</h2><br />
+<p>
+While Python has the clear advantage as a general purpose light/moderate programming
+language, its not the be-all-end-all of programming.
+</p>
+<p>
+If you are purely interested in web development, the best starting place is HTML/CSS basics, then 
+JavaScript (not related to Java). There is a very popular <a href=
+"http://en.wikipedia.org/wiki/Server-side_scripting">server side scripting</a>
+python module called django, but most beginners probably want to do <a href=
+"http://en.wikipedia.org/wiki/Server-side_scripting">client side scripting</a>, where
+JavaScript is the de-facto standard.
+</p>
+<p>
+For Android development, Java. Google has a very nice 
+<a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a> development package
+(based on IntelliJ, like PyCharm) to get you started.
+</p>
+<h3>
+"Scripting" Languages vs "Serious" Languages
+</h3><br />
+<p>
+Java is the dominate language in a lot professional software development right now, with
+C++ still being dominant in the scientific/engineering community for heavy computational
+work. Java and C++ are what am amateur like me would call 'serious' programming
+languages, compared to Python they will have steeper learning curves, and require more
+typing to achieve the same results. But a 1000 lines of code runs and in microseconds
+instead of milliseconds, and all that extra code and syntax, a.k.a. verbosity, allows
+complex programs to be more robust, so they are better suited for large software
+development. Unless your goals are to get a software development postion (sans degree) 
+the advantages will likely be lost on the "light" software deveoper.
+</p>
+<p>
+Speaking of degrees, my alma mater now teaches Python as a introductory language, because Python
+can supports the advanced constructs found in Java C++, yet is easier to learn, it is a very effienct way
+to teach programming concepts. Students later transition to other languages with very brief or no in-class
+ramp up time.
+</p><br />
+<h2>
+<a name="What version of Python?"><span style='font-size:14.0pt;color:#00AAFF;'>What
+version of Python?</span></a><a href="#top">&nbsp;&nbsp;&nbsp;back to top</a>
+</h2><br />
+<p>
+2.7
+</p>
+<p>
+Python 3 is on a separate development track than 2, e.g. Python 2.7 is newer than 3.1.
+2.7 is on long-term support and won't be superseded by another Python 2 version.
+</p>
+<p>
+Form what I read, Python 3 is a robust, capable, improved language. Python 2.7 is no
+longer being actively improved (thought many 3rd party 2.7 libraries are) but it still
+has significant advantages advantage in terms of maturity and popularity, and it look
+like it'll be that way for awhile.
+</p>
+<p>
+2.7 has been around long enough to have largely replace 2.6 and lower, though versions as
+low 2.4 are not dramatically different than 2.7, so if your need to switch over for a
+specific reason your 2.7 knowledge will be largely transferable.
+</p>
+<p>
+Minor releases, e.g. 2.7.6 are patch releases. Unless you have a specific reason, get the
+latest, 2.7.6 at time of writing.
+</p><br />
+<h2>
+<a name="Python Installation"><span style='font-size:14.0pt;color:#00AAFF;'>Python
+Installation</span></a><a href="#top">&nbsp;&nbsp;&nbsp;back to top</a>
+</h2><br />
+<p>
+Python installation is pretty straightforward. For Windows, just go to the download page
+and install the proper executable. On Linux you will already have python. At this point
+you can head over to <a href="">Learning Python</a> or <a href="">Setting up an
+IDE</a><br />
+<br />
+But there are a common question that come up, you can check these out as they pertain to
+you<br />
+<br />
+</p>
+<h2>
+General
+</h2>
+<p>
+<br />
+<a href="">- Multiple Python Installations</a><br />
+<a href="">- Running Python</a><br />
+&nbsp;&nbsp;<a href="">- The 'python' command</a><br />
+</p><br />
+<h2>
+Windows
+</h2><br />
+<h3>
+Default Installation
+</h3>
+<p>
+- Does not create 'python' command<br />
+&nbsp;&nbsp;&nbsp;<a href="">- Manual Setup</a><br />
+- By default, creates/updates file extension associations<br />
+&nbsp;&nbsp;&nbsp;- Option can be deselected<br />
+- User can pick installation directory<br />
+&nbsp;&nbsp;&nbsp;- Default is C:/python## for Python #.#.x<br />
+</p><br />
+<h2>
+Linux
+</h2><br />
+<p>
+- Linux should already have a version on Python, version will vary depending on
+distribution<br />
+</p>
+<h3>
+Default Installation
+</h3>
+<p>
+- Does creates/overwrite 'python' command<br />
+- Also creates/overwrite 'python#' and 'python#.#' version specific commands<br />
+- Overwriting 'python' command, causing it to refer to a different version, could cause
+issues<br />
+<a href="">- Change any of the above with custom build options</a>
+</p><br />
+<a name="Running Python"><span style='font-size:14.0pt;color:#00AAFF;'>Running Python</span></a><a href="#top">&nbsp;&nbsp;&nbsp;back to top</a>
+</h2><br /><br>
+<p>
+- From an IDE (after interpreter configuration)<br />
+- By double-clicking .py files in a browser<br />
+&nbsp;&nbsp;&nbsp;&nbsp;> File extension association must be setup<br />
+&nbsp;&nbsp;&nbsp;&nbsp;> If the script doesn't require arguments<br />
+- From the command line, either by:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;> explicitly referencing to the python executable<br />
+&nbsp;&nbsp;&nbsp;&nbsp;> using the 'python' command (if it is setup)<br />
+- In general, anything that can be done from command line <br>
+&nbsp;&nbsp;&nbsp;can also be done by:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;> shell/batch scripts<br />
+&nbsp;&nbsp;&nbsp;&nbsp;> system calls (which most scriptable softwares can generate)<br />
+</p>
+<h3>
+From the Command Line - Linux/Windows
+</h3><br />
+<p>
+I use Windows terminology but this paragraph also applies Linux. OS specific info in
+later paragraphs.
+</p>
+<p>
+Python can always be launched by entering the explicit path into a command prompt<br />
+- To launch a comment prompt (Windows): Windows Key + R -&gt; type 'cmd' &gt;
+{enter}<br />
+- Type the location of python.exe into the terminal, e.g.<br />
+<br />
+</p>
+<div class="codebox">
+<pre>C:\Python27\python.exe</pre>
+</div><br />
+<br />
+<p>
+- When called without any argument you get the Python terminal<br />
+<img width="95%" src="./getting_started_in_python/python_cmd_interp.png" alt="" /><br />
+<br />
+- To run a script, add the script name as the first argument, e.g.<br />
+<br />
+</p>
+<div class="codebox">
+<pre>C:\Python27\python.exe hello.py<br /></pre>
+</div><br />
+<p>
+The script will run then return to the propmt when complete<br />
+</p><img width="95%" src="./getting_started_in_python/hello_from_cmd_line.png" alt="" />
+<p>
+More common (and convenient) way to simply be able to type 'python' or other 'command'.
+This works when the python executable, or some type of link to it, is in one of the
+directories listed in the PATH environment variable.
+</p><img width="95%" src="./getting_started_in_python/python_command.png" alt="" /><br />
+<h3>
+Setting up the 'python' command - Windows
+</h3><br />
+<p>
+The most common recommendation is to modify PATH to include the python directory. Since
+the python.exe is always named the same, this can only work for a single installation,
+which proably ins't a big deal for most people. You do have to <a href=
+"http://superuser.com/questions/143119/how-to-add-python-to-the-windows-path">do it
+manually</a>. A Windows Python installation only 'overwrites' if the same directory is
+specified, as would be that case if you installed a 2nd 2.7.x installation and used the
+default.
+</p>
+<p>
+By default, a windows installation will setup file path association, allowing you to
+double-click python scripts. This method isn't useful if the script requires arguments.
+</p><br />
+<h3>
+Setting up alternative commands - Windows
+</h3><br />
+<p>
+For multiple installations, you will want make a symlink with unique name somewhere in a
+PATH like C:/WINDOWS. To do this <a href=
+"http://technet.microsoft.com/en-us/library/cc947813(v=ws.10).aspx">open command windows
+as an administrator</a> then use <a href=
+"http://technet.microsoft.com/en-us/library/cc753194.aspx">mklink</a> with the /h switch
+to make a hardlink. Below I make a uniquely named hardlink, 'joes_py27', to my
+C:\Python27 python executable.<br />
+<br />
+</p>
+<div class="codebox">
+<pre>cd c:/windows
+mklink /h joes_py27.exe "C:/Python27/python.exe"</pre>
+</div><br />
+<br />
+<img width="95%" src="./getting_started_in_python/joes_py27_hardlink.png" alt="" /><br />
+<h2>
+Linux
+</h2><br />
+<h3>
+'python' Command and Installation Location - Linux
+</h3><br />
+<p>
+On Linux, links are created in a PATH folder automatically during python installation.
+Linux distros include a python installation, and overwriting the link with one pointing
+to a different version could cause issues. To prevent this, you should build python using
+the altinstall command. You can also control the install directory using build options.
+</p>
+<h3>
+Building python in custom directory with no link overwrite - Linux
+</h3><br />
+<p>
+1) Download/uncompress the "compressed source tar ball" for the appropriate version from
+<a href="https://www.python.org/download/releases/">Python.org</a><br />
+<br />
+2) CD into the uncompressed directory and build it with the following commands:<br />
+<br />
+</p>
+<div class="codebox">
+<pre>make clean
+./configure --prefix=/apps/joes_py27 --exec-prefix=/apps/joes_py27
+make altinstall preifx=/apps/joes_py27 exec-prefix=/apps/joes_py27</pre>
+</div><br />
+<p>
+Maybe options aren't needed in both places, but this worked for me on RHEL 6.4.<br />
+<br />
+References/More info:<br />
+<a href=
+"http://isezen.com/2011/09/02/how-to-install-locally-python-on-linux-home-directory/">How
+to install locally python on linux home directory?</a><br />
+<a href="https://mail.python.org/pipermail/tutor/2002-March/012903.html">[Tutor] how to
+install python on unix machine if you don't have root</a><br />
+<br />
+<br />
+3a) [Optional] If you want a terminal command use <a href=
+"http://ss64.com/bash/ln.html">the ln command</a> to make a link somewhere in PATH, like
+/usr/local/bin<br />
+<br />
+</p>
+<div class="codebox">
+<pre>ln /s /apps/joes_py27/bin/python2.7 /usr/local/bin/joes_python</pre>
+</div><br />
+<br />
+<p>
+3b) [Optional] Alternatively, you can get similar behaviour behaviour by using an
+<a href="www.mediacollege.com/linux/command/alias.html">alias</a>. This shouldn't require
+admin rights.<br />
+</p>
+<script src="../js/bottom.js" type="text/javascript"></script>

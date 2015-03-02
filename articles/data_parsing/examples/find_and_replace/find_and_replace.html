@@ -1,0 +1,26 @@
+<html>
+<link href="../../../../style.css" rel="stylesheet" type="text/css" >
+<pre>
+<comment># Find and Replace</comment>
+<comment># Creates output.txt which is a copy of input.txt except with 'brown' replaced with 'blue'</comment>
+
+<comment># open() files for reading and writing</comment>
+fIn = open(<strings>'blue.txt'</strings>, <strings>'r'</strings>)
+fOut = open(<strings>'brown.txt'</strings>, <strings>'w'</strings>)
+
+<comment># any 'iterable' object can be looped by:</comment>
+for line in fIn:
+
+    <comment># string replace operation</comment>
+    line = line.replace(<strings>'blue'</strings>, <strings>'brown'</strings>)
+
+    <comment># file write operation</comment>
+    fOut.write(line)
+
+
+<comment># close the files</comment>
+fIn.close()
+fOut.close()
+
+</pre>
+</html>

@@ -1,0 +1,57 @@
+<html>
+<link href="../../../../style.css" rel="stylesheet" type="text/css" >
+<pre>
+<comment>#Bank calc</comment>
+<comment>#goe through a data file and defines 'bank angle' of a road based on its curvature</comment>
+
+<comment># open() files for reading and writing</comment>
+fIn = open(<strings>'figure_8_meters.rdf'</strings>, <strings>'r'</strings>)
+fOut = open(<strings>'figure_8_feet.rdf'</strings>, <strings>'w'</strings>)
+
+<comment>#initialise a string 'header' to store the non-data</comment>
+header = <strings>''</strings>
+<comment>#and a matrix to store the data</comment>
+data = []
+data_block = False
+
+for line in fIn:
+
+    <comment># this operation will take place only after the data section starts</comment>
+    <comment># this flag gets set below</comment>
+    if data_block:
+
+        <comment># first take the EOL of character off with rstrip()</comment>
+        <comment># then split the line into an array</comment>
+        row = line.rstrip().split(<strings>'\t'</strings>)
+
+        <comment>#lets a string comprehension to turn the strings into numbers</comment>
+        number_row = [float(x) for x in row]
+
+        <comment># now lets do the conversion</comment>
+        <comment># note that we only need to perform the operation on the 1st 4 items</comment>
+        <comment># for we slice syntax and array concatenation</comment>
+        imperial_row = [x * 3.28 for x in number_row[:3]] + number_row[3:]
+
+        <comment># now lets go back to string to prepare for the file write</comment>
+        str_row = [str(x) for x in imperial_row]
+
+        <comment>#join and write the row, and an windows EOL character</comment>
+        fOut.write(<strings>'\t'</strings>.join(str_row) + <strings>'\n'</strings>)
+
+    else:
+        <comment># write out the string replacing 'meter' with 'feet'</comment>
+        fOut.write(line.replace(<strings>'meter'</strings>, <strings>'feet'</strings>))
+
+    <comment># check for the starting character of the line before the data</comment>
+    if <strings>'{    X'</strings> in line:
+        data_block = True
+
+
+
+
+
+fIn.close()
+fOut.close()
+
+</pre>
+</html>

@@ -1,0 +1,42 @@
+<div class="titlebar">
+        <p>
+          basic_reformat_loop.py
+        </p>
+      </div>
+	  
+	  
+<div class="codebox">
+<pre><comment>#Basic file modification</comment>
+
+<comment>#Creates output.txt which is a copy of input.txt</comment>
+<comment>#except with 'brown' replace with 'blue'</comment>
+
+fIn = open(<strings>'input_data.txt'</strings>, <strings>'r'</strings>)
+fOut = open(<strings>'output_data.txt'</strings>, <strings>'w'</strings>)
+
+<comment>#parser</comment>
+for line in fIn:
+    <comment>#spling the line into datas</comment>
+    row = line.split(<strings>','</strings>)
+
+    <comment>#initialize count</comment>
+    i = 0
+    for data in row:
+        <comment>#strip leading and trailing whitespace</comment>
+        data = data.lstrip()
+        data = data.rstrip()
+
+        <comment>#remove double-quotes</comment>
+        data = data.strip(<strings>'"'</strings>)
+
+        <comment>#reassign, increment count</comment>
+        row[i] = data
+        i += 1
+
+    <comment>#rejoin the row into a line and write it to fOut</comment>
+    line = <strings>" "</strings>.join(row)
+    fOut.write(line + <strings>'\n'</strings>)
+
+
+fIn.close()
+fOut.close()</pre></div>

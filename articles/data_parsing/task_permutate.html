@@ -1,0 +1,28 @@
+<html  style="min-width:650px;"><body style="min-width:650px;">
+<link href="../../style.css" rel="stylesheet" type="text/css" >
+<script src="../../js/top.js" type="text/javascript"></script>
+
+<p>In the previous task, we merges data from two files, but now
+we look at "file multiplication" so to speak, we will use a 
+design matrix to generate many permutations of an input data file.
+
+<br>Process outline:
+<br>
+<br>- Parse the design matrix CSV into a nested dict, with the upper level corresponding to the design variables and the lower level corresponding to the 'runs' or variations
+<br>- For run In runs:
+<br>--- Iterate the baseline file, constructing 'check string' for each piece of data encountered in order to check if they re in the matrix
+<br>--- If they are, rebuild the output line with the design matrix values
+<br>
+<br> New concepts: <a> incremental build</a>, <a>finite state machine</a>, <a>check string construction</a>
+<br> New methods: <a>zip()</a>
+<br><br>
+</p>
+
+<div class="titlebar" style="height:50px;width:650px;">
+<h2>doe_build.py</h2>
+<p>Conver some numerical values from metric to imperial</p>
+</div>
+<iframe seamless src='./examples/doe_build/doe_build.html' frameborder=1 width=656px height=350px></iframe>
+
+
+</body></html>

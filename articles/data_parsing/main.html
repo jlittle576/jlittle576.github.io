@@ -1,0 +1,352 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<link href="../../style.css" rel="stylesheet" type="text/css">
+<link rel="shortcut icon" href="favicon.ico"><title>Data Parsing</title>
+
+</head>  <body>
+-
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../ckeditor/ckeditor.js"></script>
+<script src="../../ckeditor/adapters/jquery.js"></script>
+<script>
+CKEDITOR.disableAutoInline = true;
+$( document ).ready( function() {
+$( '#editor1' ).ckeditor(); // Use CKEDITOR.replace() if element is <textarea>.
+$( '#editable' ).ckeditor(); // Use CKEDITOR.inline().
+} );
+function setValue() {
+$( '#editor1' ).val( $( 'input#val' ).val() );
+}
+</script>
+<script src="../../js/top.js" type="text/javascript"></script>
+<!--script language="javascript"> function toggle(elementId) {
+var ele = document.getElementById(elementId);
+if(ele.style.display == "block") {
+ele.style.display = "none";
+}
+else {
+ele.style.display = "block";
+}}
+function hide(elementId) {
+var ele = document.getElementById(elementId);
+ele.style.display = "none";
+}
+function load(example, path) {
+var ele = document.getElementById(example);
+ele.innerHTML = '<iframe src=\'' + path + '\' width=\'700px\' height=\'500px\'></iframe>';
+if(ele.style.display == "block") {
+ele.style.display = "none";
+}
+else {
+ele.style.display = "block";
+}}
+</script-->
+
+<h1>CAE Data Processing with Python</h1>
+<br><br>
+<!--<img src="../../images/under_construction.png" height="150" width="150" align="left"></img>-->
+
+<img src="../../images/under_construction.png" height="75" width="75" align="left"></img>
+<h2>This Article (A Work in Progress)</h2>
+
+<p>The article is the first stage of what I hope to make into a 
+comprehensive groundup introduction for manipulating CAE datafiles using Python.
+</p><p>Currently, it consists of a series commented set of code examples which: </p>
+<li>Demonstrate a spectrum of CAE datafile processing tasks</li>
+<li>Start utterly simply the progressively incorporate more complex techniques and structure</li>
+<li>Contain discussion and outline of overall script strategy</li>
+<li>Identify and link to descriptions of concepts and methods/functions used</li></li>
+<br>
+<p>I'm currently developing a second section, a glossary of contextualized introductions to the techniques used in the examples (a skeleton outline can be viewed <a>at the bottom</a>), and finally, supplement the example series with variations and exercises to drive home the concepts. Stay tuned and feel free to provide feedback!</p>
+
+<h2>A Brief CAE Background</h2>
+<p>The engineering and scientific community use analysis software to model
+their resprctive systems.
+The software often relies heavily on many types datafiles. There has
+been a movement, in varying level of success, to move to standardize
+document formatx like XML or JSON, however the vast majorty still use
+task specific ASCII formats. Various needs arise to process these
+datafiles in a programatic manner.
+Python provides an excellent platform to do this.</p>
+
+<h2>A Less Brief Background<a id="displayText" href="javascript:toggle('toggleText');"> + Expand</a></h2>
+<br>
+<div id="toggleText" style="border-style: solid; border-width: 2px; display: none;">
+<h2>Background</h2>
+<br>
+<p><a href="http://en.wikipedia.org/wiki/Computer-aided_engineering">Computer
+Aided Engineering</a>, while may seem a broad catergory by name,
+specifically refers to a set of tools used by the
+mechanical/aerospace/thermodynamics engineering to analyse mechanical
+systems. The analysis is a mathematical prediction of how a system will behave, in
+the time, frequency, and design domains.
+<br><br>
+Early use of CAE involved hand written text files (even punch cards in
+early days) which define the properties and connectivity of the 
+mechanical components, boundary conditions, and output requests,
+compromising the system, event, and output data of interest. These input decks are submitted to the mathematical
+solver which returns raw numeric output describing the various output requests defined in the input deck.
+<br>
+<br>
+Of course, over time software has developed to automate
+the generation of these inupt decks (pre-processors) and analysis
+of the output data (post-processors). The offer provide
+wizards for component generation, visualization of the model and animations of
+the analysis, and many other tools for model and results exploration.
+<br>
+<br>
+As opposed to the relatively simple structure of solver input decks
+pre/post processing software typically uses a more complex, hierarchal database structure to
+support higher level parametrization, configuration, and visualization definitions. 
+<br>
+<br> 
+Usually there is some support for programmatically interacting with these datasets
+via an Application Program Interface (API). Commands may be typed individually
+into a prompt, or stored in macros. The language of the commands may proprietary or some standard programming language (often Python) may be adapted ,
+in which case a custom module for accessing the programs internal data set is provided.
+<br>
+<br>
+While the primary save files for these models maybe binary or ASCII,
+the many data files that it references are almost always ASCII.
+While many vendors have adopted standardized ASCII
+formats like XML, many files are proprietary, task-specific human readable ASCII formats.</p>
+<br>
+<br>
+</p>
+<h2>The need for scripting</h2>
+<br>
+<p>The pre and post processing software typically are combined
+with the solver in a single suite from a vendor. In many way this makes sense, however, there are usually short comings
+when trying to develope unique, novel, or multi-disciplanary process. In this case, custom code must be generated. The code may interact with the pro/post processor via its API, the solver via subroutines, or with external datafile that serve as the go-between in the multi-stage process. 
+</p>
+<h2>Python for CAE</h2>
+<br>
+<p>Over the past 5 year, Python scriping and utility development
+has become an increasing dominant method for creating this customizaion
+at all stages,
+slowly replacing a myrid assorment of proprietary or obtuse
+scripting/programming languages.
+The broad adoption of an user friendly yet poweful
+scripting/programmnig language has dramitically improved the capabiliy
+of (non-software) engineers to develope improved CAE processes. <br>
+</p>
+<a id="unDisplayText" href="javascript:hide('toggleText');">
+[Collapse]</a><br>
+<br>
+</div>
+
+<h2>Disclaimer</h2>
+<p> This article is aimed at a audience that is computer proficient,
+has some exposure to programming, but for whom programming does not constitute
+a primary skill of their profession. This article does not:
+<li>Provide an introduction to Data Science, a sub-field of Computer Science</li>
+<li>Use a set of terms that is necessary constituent with Computer Science/Software Development profession</li>
+<li>Focus on any standardize Document Object Model or Database Management System</li>
+
+<br>
+<p>On that last topic, it is the opinion of the author that there is a large need for widespread
+adoption of said practices. Nevertheless, there is only sporadic use on the vendor side, and the CAE industry in general is heavily proprietary, so end user implementation are generally not considered feasible. Hope we will see a change in the next generation of tool, but until then...</p>
+
+<h1>The A.O.S. Approach to Datafile Processing</h1>
+
+<p>Admittedly, this acronym was made-up on the spot to prevent an overtly long section title, but nevertheless the following is a categorization of the methods presented here:
+<br><br>
+Agile - Were not trying to develop software, we trying to develop outcomes. We focus on achieve incremental stages of functionality with the minimal keystroked requires, implementing traditional programming practices later in development only as required.
+<br><br>
+Organic - new script start small, do something useful (or at least testable) and all stages of growth, and use all natural (build-in) functions
+<br><br>
+Specific - despite its benefits, modularity requires a critical mass and level of maintenince that might not be feasible. Instead we opt for straight forwardness and simplicity we canachieve by tailoring a script to very specific application.</p>
+
+<!------- Task Oriented ------>
+
+<br>
+<h1>Intro Examples</h1>
+<br>
+<p>Probably the best intro to data processing is to jump right
+into some examples. Below is a description of some common types of
+datefile processing tasks and simple (perhaps simplistic) examples of
+each.</p>
+
+<!-- File Iteration -->
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h2>File Iteration <a id="displayText" href="javascript:load('task_file_iteration', 'task_file_iteration.html');"> +
+Expand</a></h2>
+<p>Basic file looping with line manipulation</p>
+</div>
+<div id="task_file_iteration"></div>
+
+<!-- Basic Manipulation -->
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h2>Manipulation <a id="displayText" href="javascript:load('task_data_manipulate', 'task_data_manipulate.html');"> +
+Expand</a></h2>
+<p>Extract and manipulate numerical data</p>
+<p> Data is changed, often some form of scaling or shifting, or
+mathematical operations</p>
+</div>
+<div id="task_data_manipulate"></div>
+
+<!-- File Merge -->
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h2> File Merge <a id="displayText" href="javascript:load('task_file_merge', 'task_file_merge.html');"> + Expand</a></h2>
+<p> Merging data from one file with the formatting of another </p>
+</div>
+<div id="task_file_merge"></div>
+
+<!-- Permutation -->
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h2> Permutation <a id="displayText" href="javascript:load('task_permutate', 'task_permutate.html');"> +
+Expand</a></h2>
+<p> Creating many variations of a baseline data source</p>
+</div>
+<div id="task_permutate"></div>
+
+<!-- File Conversion -->
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h2> Restructure <a id="displayText" href="javascript:load('example_basic_restructure', 'example_basic_restructure.html');"> +
+Expand</a></h2>
+<p> The output data has a significantly structure than the input,
+ususal smaller/simpler (extraction) </p>
+</div>
+<div id="example_basic_"></div>
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h2> Visualize <a id="displayText" href="javascript:load('example_basic_visualize', 'example_basic_visualize.html');"> + Expand</a></h2>
+<p> Visualize some data using a library like matlibplot or Image </p>
+</div>
+<div id="example_basic_"></div>
+<br>
+<br>
+
+<img src="../../images/under_construction.png" height="100" width="100" align="left"></img>
+<img src="../../images/under_construction.png" height="100" width="100" align="right"></img>
+<br>
+<p>As mentioned, the below is under construction. The top-level format is more-or-less finalized solidified, however the sections are either empty, stubs, or in early draft status.</p>
+<br><br>
+ 
+<h1>Programming Techniques</h1>
+<br>
+<p>Now that some task based example have been demonstrated, let's
+take a look from a techniques perspective,
+starting with the most basic and intergrating pieces one by one.</p>
+<br>
+<h2>Line Processing</h2>
+<br>
+<p> 'Line Processing' encompassies the breaking down and 'reconstruction' of line.
+A simple file processing program may consits only of s <a>Synchronous File Loop</a> wrapped around a line processor.
+(in which case you may refer to this program as a whole as a "Line Processor")
+In more complex programs, there may be many steps between deompostion and resonctruction.
+Still, the line decopposition and reconstruction are foundational components of any datafle processing program.
+</p>
+
+<!--Synchronous File Loop-->
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h2> Process Structure: Synchronous File Loop (SFL)<a id="displayText" href="javascript:load('section_synchronous_file_loop', 'section_synchronous_file_loop.html');"> + Expand</a></h2>
+<p> Borrowing from the <a>Process Structures</a> section, the SFL is <b>the</b> elementary line processing approach</p>
+</div>
+<div id="section_synchronous_file_loop"></div>
+
+<!--String Methods -->
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h2> Line Processing: String Methods <a id="displayText" href="javascript:load('section_string_methods', 'section_string_methods.html');"> + Expand</a></h2>
+<p> An overview of buil-in python string methods </p>
+</div>
+<div id="section_string_methods"></div>
+
+<!--String Decomposition -->
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h2> Line Processing: String Decomposition <a id="displayText" href="javascript:load('section_string_decomposition', 'section_string_decomposition.html');"> + Expand</a></h2>
+<p> Breaking string down into data</p>
+</div>
+<div id="section_string_decomposition"></div>
+
+<!--String Construction -->
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h2> Line Processing: String Resonctruction <a id="displayText" href="javascript:load('section_string_reconstruction', 'section_string_reconstruction.html');"> + Expand</a></h2>
+<p> Reconstituing data into strings</p>
+</div>
+<div id="section_string_reconstruction"></div>
+
+<!--Regular Expressions -->
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h2> Line Processing: Regular Expressions <a id="displayText" href="javascript:load('section_regular_expressions', './technique_examples/regular_expressions/re_demo.html');"> + Expand</a></h2>
+<p> Using regular expressions for advanced conditional checks string decomposition</p>
+</div>
+<div id="section_regular_expressions"></div>
+
+<br>
+<p>As mentioned above many tasks force beyond the simple
+Synchronous File Loop program structure. Howevey stepping, this scope can be done on one of more of numerous ways.
+From here, the topics are no longer progressional, but can be <b>roughly</b> catergorized as <a>Loop Techniques</a> and <a>Process Structure</a> additionally, relevant genral programming advice is outline in <a>Meta Advice</a>.</p>
+<br>
+<h3>Process Structure</h3>
+<br>
+<p>One way to expand the capcbility is to incorperation
+additional loops and/or array operations. This goes hand in hand with
+designing Data Strcutes to transport the data from one loops to
+another. abandoning the synchronous loop for more advanced. Often, we
+have a set of file, one having the data we want and another having the
+format we want.</p>
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h3> Process Structure: File/Data Merge<a id="displayText" href="javascript:load('example_basic_visualize', 'example_basic_visualize.html');"> + Expand</a></h3>
+<p> Using multiple sources formatting and data </p>
+</div>
+<div id="example_basic_"></div>
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h3> Process Structure: Multi Stage Processing of a
+Dataset<a id="displayText" href="javascript:load('example_basic_visualize', 'example_basic_visualize.html');"> + Expand</a></h3>
+<p> Handline datasets that take multipel steps to digest  </p>
+</div>
+<div id="example_basic_"></div>
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h3> Process Structure: File Permutation<a id="displayText" href="javascript:load('example_basic_visualize', 'example_basic_visualize.html');"> + Expand</a></h3>
+<p> Use a design matrix to generate many permutations (variations) of a dataset</p>
+</div>
+<div id="example_basic_"></div>
+<br>
+<br>
+<h3>Loop Techniques</h3>
+<br>
+<p> Regardless of single loop or multi-loop or other processing strusture, the
+Step A to Step B capability of a loop capabilities of any sinlge loop
+can be increased with more advanced <a>Looping Techniques</a></p>
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h3> Loops Techniques: Nesting<a id="displayText" href="javascript:load('example_basic_visualize', 'example_basic_visualize.html');"> + Expand</a></h3>
+<p> Process multi-dimensional datasets and file(set)s but using loop nesting </p>
+</div>
+<div id="example_basic_"></div>
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h3> Loops Techniques: Caching<a id="displayText" href="javascript:load('example_basic_visualize', 'example_basic_visualize.html');"> + Expand</a></h3>
+<p> Use data caching to to digest multi-line pieces of data </p>
+</div>
+<div id="example_basic_"></div>
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h3> Loops Techniques: Finite State Machine<a id="displayText" href="javascript:load('example_basic_visualize', 'example_basic_visualize.html');"> + Expand</a></h3>
+<p> Handling strutcured data files using flags and conditions testing </p>
+</div>
+<div id="example_basic_"></div>
+<br>
+<br>
+<h3>Meta Advice</h3><br>
+<p> General, higher level advice for building data processing scripts</p>
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h3> Incremental Build Process and Debugging<a id="displayText" href="javascript:load('example_basic_visualize', 'example_basic_visualize.html');"> + Expand</a></h3>
+<p> A example disucssing scrpt development and trouble shooting technique</p>
+</div>
+<div id="example_basic_"></div>
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h3> Working with Files and Directories<a id="displayText" href="javascript:load('example_basic_visualize', 'example_basic_visualize.html');"> + Expand</a></h3>
+<p> A basic example of a template driven file conversion </p>
+</div>
+<div id="example_basic_"></div>
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h3> Building (the right amount of) script robustness<a id="displayText" href="javascript:load('example_basic_visualize', 'example_basic_visualize.html');"> + Expand</a></h3>
+<p> A basic example of a template driven file conversion </p>
+</div>
+<div id="example_basic_"></div>
+<div class="titlebar" style="height: 50px; width: 750px;">
+<h3> Delivering code<a id="displayText" href="javascript:load('example_basic_visualize', 'example_basic_visualize.html');"> + Expand</a></h3>
+<p> Taking arguments and delivering code</p>
+</div>
+<div id="example_basic_"></div>
+<script src="../../js/bottom.js" type="text/javascript"></script>
+</body></html>

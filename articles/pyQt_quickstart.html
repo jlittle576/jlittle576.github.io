@@ -1,0 +1,98 @@
+<html>
+<head>
+<link href="../style.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="favicon.ico">
+<title>AHK for Scripting Automation</title>
+<script src="../js/top.js" type="text/javascript"></script>
+
+
+        <p>
+          Qt - a C++ cross-platform graphics library<br />
+          Qt Designer - A program for graphically laying out a GUI, saves to UI file, not language
+          specific<br />
+          PyQt - a Python "binding" of Qt which allow use of Qt amd UI files using only
+          Python<br />
+        </p>
+        <h3>
+          1) Setup
+        </h3><br />
+        <p>
+          You have to have Python, the pyQt library, and the Qt Designer program. You *don't* need
+          to separately install Qt, which is a ~3gb library.
+        </p>
+        <h3>
+          Get UI Designer (by Installing <a href=
+          "http://portablepython.com/wiki/PortablePython2.7.6.1/">PortablePython 2.7</a>)
+        </h3>
+        <p>
+          Currently Qt has rolled QtDesigner into a larger package, QtCreator, which I don't know
+          much about. Portable Python includes a portable version of QtDesigner which is what I've
+          always used. AS with many programs, I install this to my [dropbox]/code/installations/...
+          folder so I always have access to a python installation.
+        </p>
+        <p>
+          When you get it installed, the executable for QtDesigner will be in the folder you
+          installed PortablePytohn to. You can create a shortcut to it on your desktop, and/or you
+          can associate it with UI files by using Open With... on any UI file.<br />
+          <img src="./pyqt_quickstart/install_dir.png" alt="" />
+        </p>
+        <h3>
+          Get pyQt
+        </h3><br />
+        <p>
+          Now the PortablePython installation includes Python 2.7 and PyQt, along with many other
+          libraries, preinstalled, so you can also use it for code execution. If you are not using
+          an IDE, this means <a href="">calling the executable</a> located at [install
+          dir]/App/python.exe. If you are <a href="">using an IDE</a> (recommended), this means
+          doing <a href="">interpreter configuration</a> for the same path.
+        </p>
+        <p>
+          Or, you can do a standard Python 2.7 install then install the PyQt library from the
+          <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt">Unofficial Windows Binaries for
+          Python Extension Packages</a>, pick the one for Python2.7 and either 32-bit or 64-bit
+          according to which version of Python you have installed.
+        </p>
+        <h3>
+          2) Download <a href="https://www.dropbox.com/s/kkgnvcc5ap94t2n/basic.ui">basic.ui</a> and
+          save it your project folder
+        </h3>
+        <p>
+          This is a UI file created by UI designer with just 2 buttons and a text window. It was
+          easy to make this from scratch in the UI designer.
+        </p>
+        <p>
+          You can open it in UI Designer and take a look. You can also play around with adding new
+          elements, but don't save over it for now.<br />
+          <img src="./pyqt_quickstart/ui_designer_basicUI.png" alt="" />
+        </p>
+        <h3>
+          3) Create a new python file in the project directory
+        </h3><br />
+        <p>
+          Paste the following boilerplate code for loading a UI file. This is a complete python
+          script, e.g. it will run, but it doesn't do anything in the way of making the GUI
+          elements do stuff<br />
+        </p>
+        <div class="codebox">
+          <pre>import sys from PyQt4 import QtGui, uic 
+class MyWindow(QtGui.QMainWindow): 
+	def __init__(self): 
+		super(MyWindow, self).__init__()
+		uic.loadUi('basic.ui', self) self.show()
+app = QtGui.QApplication(sys.argv)
+window = MyWindow()
+sys.exit(app.exec_())</pre>
+        </div><br />
+        <p>
+          Like much of my boilerplate code, it was copied directly from <a href=
+          "http://stackoverflow.com/questions/2398800/linking-a-qtdesigner-ui-file-to-python-pyqt">a
+          stackoverflow post</a>, thanks kermit666! You can reuse this code at the start of any
+          pyQt project, just change the name of the UI file.
+        </p>
+        <p>
+          Running this should display basic.ui much like it did in UI Designer
+        </p>
+      </div>
+	  	  
+
+		  <script src="../js/bottom.js" type="text/javascript"></script>

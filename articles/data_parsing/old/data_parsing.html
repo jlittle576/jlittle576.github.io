@@ -1,0 +1,460 @@
+<html>
+<head>
+<link href="../style.css" rel="stylesheet" type="text/css" >
+
+<link rel="shortcut icon" href="favicon.ico">
+<script src="../js/jquery.min.js"></script>
+<script src="../ckeditor/ckeditor.js"></script>
+<script src="../ckeditor/adapters/jquery.js"></script>
+<script>
+
+		CKEDITOR.disableAutoInline = true;
+
+		$( document ).ready( function() {
+			$( '#editor1' ).ckeditor(); // Use CKEDITOR.replace() if element is <textarea>.
+			$( '#editable' ).ckeditor(); // Use CKEDITOR.inline().
+		} );
+
+		function setValue() {
+			$( '#editor1' ).val( $( 'input#val' ).val() );
+		}
+
+	</script>
+<title>Data Parsing</title>
+<script src="../js/top.js" type="text/javascript"></script>
+
+<script language="javascript"> 
+function toggle(elementId) {
+	var ele = document.getElementById(elementId);
+
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+  	}
+	else {
+		ele.style.display = "block";
+	}}
+function hide(elementId) {
+	var ele = document.getElementById(elementId);
+	ele.style.display = "none";
+}
+
+function load(elementId) {
+	var ele = document.getElementById(elementId);
+	
+	ele.innerHTML = '<iframe  src=\'basic_file_iteration.html\'></iframe>';
+		 
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+  	}
+	else {
+		ele.style.display = "block";
+	}}
+
+
+
+</script>	
+	
+
+
+
+<h1>CAE Data Processing with Python</h1><br>
+
+<h2>Long(ish) Intro  <a id="displayText" href="javascript:toggle('toggleText');"> + Expand</a></h2><br>
+<div id="toggleText" style="display:none; border-width:2px; border-style:solid">
+
+
+<h2>Background</h2><br>
+<p><a href="http://en.wikipedia.org/wiki/Computer-aided_engineering">Computer Aided Engineering</a>, 
+while may seem a broad catergory by name, specifically refers to a set of tools used by the 
+mechanical/aerospace/thermodynamics engineering to analyse mechanical systems. 
+The analyis is a prediciton of how a system will behave, 
+in the time, frequency, or design domain.
+<br><br>
+A broader term has since been invented to include other tools used by various other disiplines, 
+<a href='http://en.wikipedia.org/wiki/Computer-aided_technologies'>CAx</a>.
+The concepts below will apply in varying degrees to each of these technologies as well. 
+<br><br>
+Early use of CAE involved hand written text files (even punch cards in early days), called 'input decks',
+input into a numerical integrator ('solver'),  
+which would crunch the numbers into a set numerical results.
+The input decks are essentailly relational data tables filled with quantative and 
+logical values to definining system components and conditions, and the output is typically
+a spreadsheet like datafile with a column for each output of interest an a row for each 'step' (time,frequency, or design iteration)
+<br><br>
+Of course this has evolved over time, software developed to automate the generation of these inupt decks (pre-processors).
+Modern CAE pre-processor manipulate increasingly complex, highly paramteric, configurable datasets capable of
+producing any of an infinite combination of solver input files based on design and analysis setting input by the user.
+Theses pre-processors data models are typically heirarchal complex, heirarchal, and largely non-homogenous, support wide varieties of 
+data structures for the varies of components. 
+<br><br>
+Similarly, post-processing in its simplest form involves visual plot and aninmation examination by the user. While
+still an integral part of CAE, modern processes often involves 
+piping the data directly into a second (or third, fourth, etc.) software as part of a multi-stage process.
+
+<br><br>Externally, the data set is typically stored in a structured ascii file or directory of files.
+Corresponding tot he process describes, there are typically pre-processor files, solver input files (usually deleted soon after analysis)
+and output files (may or may not be archived)
+
+</p>
+
+<h2>The need for customizaion</h2><br>
+<p>The pre and post processing software typically are combined with the solver in a single suite from a vendor.
+In many way this makes sense, however, there are ususally short comings when trying to develope
+unique, novel, or multi-vendor process. For this reason
+heavy customization by users, vendors (as a service), or 3rd parties is common place. 
+This customzation can be internal via software's API or external,
+either of which may or may not involve a GUI.
+<p>
+With the proprocessor is runing the date may be stored in session, or referenced. When the preprocessor is offline,
+its primarly model data file maybe binary or ASCII, however almost all of the data will be stored in accessible
+ASCII (useually proprietary, use-specific formats; sometimes, increaslingly XML). 
+The manipulation of the external data file is the focus of the remainder of this article.
+</p>
+<h2>Python for CAE</h2><br>
+<p>Over the past 5 year, Python scriping and utility development 
+has become an increasing dominant method for creating this customizaion at all stages,
+slowly replacing a myrid assorment of proprietary or obtuse scripting/programming languages.
+The broad adoption of an user friendly yet poweful scripting/programmnig language has dramitically improved the capabiliy
+of (non-software) engineers to develope improved CAE processes. 
+<br>
+</p>
+<a id="unDisplayText" href="javascript:hide('toggleText');"> [Collapse]</a><br><br>
+</div>
+
+<h2>Short Intro</h2>
+<p>The engineering and scientific use analysis software to model their resprctive systems.
+The software often relies heavily on many types datafiles. Various needs arise to process the datafiles in a programatic manner.
+Python provides an excellent platform to do this.</p>
+
+<h2>This article</h2>
+<p>This article is a primer for manipulating CAE datafiles using Python. 
+First, there is a task-oriented series of example tasks. Second, there is a
+more in-depth technique-based walkthrough of data-manupulation techniques.
+Every thing cross-references the Examples Library. </p>
+
+<h2>Disclaimer</h2>
+<p>The conceps are a combination of engineering (specifially CAE) and programming. As a result the terms I use may be drawn from either or made up.
+They make sense to myself and my colleagues,
+but may not in the context of ofther fields due to conflicts with existing jargon, expecially where 'database' is usually taken to mean a standardized 
+<a href='http://en.wikipedia.org/wiki/Database'>Database Management System</a> (e.g. MySql).
+Despite CAE data use having a conceptual similarity to the applications standard DBMS are designed for, their use remainly largely unadopted.
+<br></p>
+
+
+<!------- Task Oriented ------>
+
+<br><h1>Task Oriented Example Walkthrough</h1><br>
+<p>Probably the best intro to data processing is to jump right into some examples. Below is 
+a description of some common types of datefile processing tasks and simplistic examples of each.</p>
+
+
+
+<!-- File Iteration -->
+
+<div class="titlebar" style="height:50px;width:750px">
+        <h2>File Iteration <a id="displayText" href="javascript:toggle('Basic File Loop Example');"> + Expand</a></h2>
+<p>A preliminary example showing basic file input and output technique<br>
+		  
+        </p>
+      </div>
+	  
+<div id="Basic File Loop Example" style="display:none; border-width:2px; border-style:solid">
+
+<div class="titlebar">
+        <p>
+          basic_file_loop.py
+        </p>
+      </div>
+      <div class="codebox">
+<pre>
+<comment>#Basic file modification</comment>
+
+<comment>#Creates output.txt which is a copy of input.txt</comment>
+<comment>#except with 'brown' replace with 'blue'</comment>
+
+fIn = open(<strings>'input.txt'</strings>, <strings>'r'</strings>)
+fOut = open(<strings>'output.txt'</strings>, <strings>'w'</strings>)
+
+<comment>#parser</comment>
+for line in fIn:
+line = line.replace(<strings>'brown'</strings>, <strings>'blue'</strings>)
+fOut.write(line)
+
+fIn.close()
+fOut.close()
+</pre>
+      </div>
+
+
+</div>
+
+
+<!-- File Iteration 2 -->
+
+<div class="titlebar" style="height:50px;width:750px">
+        <h2>File Iteration <a id="displayText" href="javascript:toggle('basic_file_loop_example2');"
+		 onclick="document.getElementById('basic_file_loop_example2').innerHTML = '<iframe  src=\'C:/Users/t3281j0/Downloads/jlittle576.github.io/articles/data_parsing/examples/basic_file_iteration.html\' scrolling=\'no\' frameborder=\'0\' width=\'100%\'  height=\'500px\'></iframe>'">
+		 + Expand</a></h2>
+<p>A preliminary example showing basic file input and output technique<br>
+		  
+        </p>
+      </div>
+	  
+<div id="basic_file_loop_example2" style="display:none; border-width:2px; border-style:solid"></div>
+
+
+<!-- File Iteration 3-->
+
+<div class="titlebar" style="height:50px;width:750px">
+        <h2>File Iteration <a id="displayText" href="javascript:load('basic_file_loop_example3');">
+		 + Expand</a></h2>
+<p>A preliminary example showing basic file input and output technique<br>	  
+        </p>
+      </div>
+	  
+<div id="basic_file_loop_example3"></div>
+
+
+
+
+
+<br>
+<h3><br>Manipulate</h3>
+<p>Data is changed, often some form of scaling or shifting, or mathematical operations</p>
+<a>Example: Scale/shift a non-linear spring date in a propery file</a><br>
+
+<br>
+<h3>Convert</h3>
+<p>A change in the format the the data is stored in, potentially using a 3rd file to source formating</p>
+<a>Example: Convert DOE design matrix from format to another</a><br>
+
+<br>
+<h3>Permutate</h3>
+<p>There is one "source" or "baseline" data which needs multiple manipulations</p>
+<a>Example: Permutate a model input file</a><br>
+
+<br>
+<h3>Restructure</h3>
+<p>The output data has a significantly structure than the input, ususal smaller/simpler (extraction)</p>
+<a>Combine a directiry structure of simulation results into a single output table</a><br>
+
+<br>
+<h3>Visualize</h3>
+<p>Visualize some data using a library like matlibplot or Image</a><br>
+<a>Example: DOE surface plot</a><br>
+
+
+
+<h3>Other operations</h3>
+<p>Above is an overview of the basic operation types. There are many others, but most would some variation of the above.
+For example, a 'convert' where the source document is still a "living file" might be called be 'update', data may even go both directions 
+so you could call it a 'synchronize'. If the 'visualize' was in stead a textual output (for human reading only) we could call it a 'report'.
+If the output was commands to do something (e.g. commadns to resubmit failed DOEs run) we might call it a 'batch generation'.
+If there the source data is hardcoded or mathematically generated, we might say 'generate' instead of 'manipulate'.</p>
+
+
+
+
+
+<br><h1>Technique Oriented In-Depth Walk Through</h1>
+
+<li><a>Operation Types with Basic Examples</a></li>
+<li><a>Processing Methods</a></li>
+<li><a>Data Structures</a></li>
+
+
+<h1>Concepts</h1>
+<p><br>The basic premise of data processing in that have some set of data and you need its to be manipulated some how.
+With our engineering hat on, we would describe as one of several <a>Operation Types</a>.
+From a programming persepctive it will involve a series of data operations known as <a>Processing Methods</a>. 
+Advanced tasks will require consideration of source, destination and intermediate <a>Data Structures</a>.</p>
+
+
+
+<br><h2>Processing Methods</h2>
+
+<p><br>Basic data processing typically consitsts of loops, nested if the data need to be work with ina multi-dimensional manner.
+In addition to loops, wholistic operations can also be performed on arrays, such as filter and truncations, though these are much less common in my use.
+
+</p><p>Generally we will loop throug the input data while generating the output data. 
+This can be done in a single loop, or as a multistage process with intermediate data storage structures. 
+In the later case, each loop will still have its own input and output data.</p>
+
+<h4>Initializaion<br></h4>
+<p>Prior to beginning the loop, files are initiated by using open(file_name, 'w') for writing, open(file_name, 'r') for reading. 
+Basic data strucure are initialized by their respecive methods, e.g. array_name = [] or dict_name = {}
+Locical variables are also set to their <a href="http://en.wikipedia.org/wiki/Sentinel_value">sentienial values</a></p>
+<h4>Iteration<br></h4>
+<p>In python iteration is commonly done by this: if done by 'for [item] in [iterable]:' <br>
+Infact, the simplicty is a great example of why python is so great (we would use the adjective 'pythonic' to express how intuitive/great this method is)
+[iterable] is anything that is sort of like an array is iterable, commom examples are files, basic arrays, or hash table.
+[item] is the loop storage for the line/row/section of data.</p>
+<h4>Sourcing<br></h4>
+<p>In some cases the iteration may not be throught the input data, or there may be multiple inputs.
+In this case we need to generate indexes to call our source data. The imcrementing of this index could be 1-to-1, intermediate,
+could call hash tables using soem data from the iterable, or something even more complex.
+<h4>Generation<br></h4>
+<p>Files are writen line by line using write(), arrays are added to using array_name.append(), and hash table are populated like dict_name['key_name'] = value.
+In the simplist case, one data will be generated for each input data iterated, but it can be less frequent using conditional statements or caching, or more frequent using by performing data decomposition 
+(for each generation there is an equivalen mutli-generation command) </p>
+
+<h3><br>Looping Strategy</h3>
+<h4><br>Synchronous Loop<br></h4>
+<p>Despite being for simple tasks only, this quick method pack a punch.
+There is a single loop which performs a line read and a line write with no holistic intermediate data storage</p>
+<h4>Discrete Loops<br></h4>
+<p>At somepoint the task outgrows the synchronous strategy and we implement a multi-state 'digestion' of the date.
+Each loops output is the next loops input. The first is ususally a file readn and the last a file write, and none one or many intermediate stages.
+Loops cost runtime, so they should be used frivolously. Also <b>simpler</b> is <b>best</b>, but doing to much in a loop leads to <b>complicated</b> code which can be <b>good</b>,
+but adding a loop typically converts it to <b>complex</b> code which is <b>better</b>. This is a cornerstone concept of python, see  <a href="https://www.python.org/dev/peps/pep-0020/">The Zen of Python</a> </p>
+
+<h3><br>Internal Loop Methods</h3>
+<p>Whithin the loop mutiple action may be taken to condition data</p>
+<h4>Line Decompositon (Strings to Data)<br></h4>
+<p>Lines(stings) are converted into data. In basics cases, using sting.split(), in more advanced, using regular expression patterns</p>
+<h4>Line Reconstruction (Data to Strings)<br></h4>
+<p>Data is reconstited into strings for output using some form of formatted sting print (SPRINTF)
+<h4>Conditional behaviors<br></h4>
+<p>The iteration action depends on some condition. The conition can only be based on the current line, of it can be based on flags which have discret set/unset conditions (finite state machine)</p>
+<h4>Cacheing/Nested Iteration<br></h4>
+<p>A certain amound of data, spanning multiple indexes/lines, is read into a varaible for storage, then treated like a single piece of data.</p>
+
+
+<br><h2>Data structure</h2><br>
+<p>In a simple case, data is in files and we can simply loop through them it performing line operations and writing to an output file.
+More complex situation will required more attention to input, output, and intermediate data structures.
+Ask 'What data do I need to work with?' then, "What data structure(s) do I need it to be in?" then "What do I have to to get it there?".
+Note the data structure is conceptual and for your purposes, a input or output data file may appear to be complex, but you may be able to treat is simply, depending on the operation.
+</p>
+
+<br><h2>Disk (Sorce/Destination) Data Structures</h2>
+<p><br>This article is generally targeted at situations where the input and output data exists as data files. Their formats can generall be categorized as:</p>
+<h4>Delimited Data<br></h4>
+<p>Typically test data, often describes as rows and columns, which may have labels, delimited by tabs, spaces, commas, etc. 3 or more deminsional possible with sequencing.</p>
+<h4>Block/Hierarchal Data<br></h4>
+<p>Date is organized into one or more styles of 'blocks' or 'elemens', which typically have 'properites' and/or 'raw data'.
+In more complex files, there may be multiple levels of parent-child relationships. These files maby be a purpose-designed ASCII format, or a standardized one like XML.</p>
+<h4>Multiple files<br></h4>
+<p>Input and output data may span multiple files, and maybe even be arranged in a directory structure with multiple levels.
+Though they have to be handled a little differently, this is not fundamentaly different than internal data file organizaion.</p>
+<h4>Non-file<br></h4>
+<p>Input could be 'hardcoded' into the script or passed as arguments. Output could be displayed are applied to the in-session memory of another program</p>
+
+
+<br><h2>Program (memory) Data</h2>
+<p><br>For simple tasks, we will be able to treat the data on line at a time, perhaps temporarily needing an array to hold some values. 
+More complex tasks will require sections or all of the data to be present at once for manupilation.</p>
+<h4>Arrays<br></h4>
+<p>Arrays will have 1,2,3 or more dimensions and some inherit 'order' (i.e. indicies). The output data order would typically be the same as input, or it can be acheived throught some form of alphanumeic sorting and/or filtering</p>
+<h4>Dicts/Hash Tables<br></h4>
+<p>For more complex tasks, you will find that relying on array order becomes tedious. 
+Instead, data in hash tables (called dicts in python) have 'labels' or keys which are used to store and retrieve data.</p>
+<h4>Nesting<br></h4>
+<p>Arrays and hash table can be nested as much as needed to accomodate the date the need to be transferred</p>
+<h4>Specialized Structures<br></h4>
+<p>For standardzied mark-up languages, there are parser libraries which have special data objects that data can be sotred in.
+They are conceptually similar to nested hash tables, but have special functions for accessing, storing data, and for file IO. </p>
+
+<br><h2>Examples</h2>
+<p>Tagged to with above terms as applicable</p>
+<h3>Find  and replace</h3><p>Loops throguth a file, produce a copy of it, except with some characters swapped</p>
+<h3>Reformat</h3><p>Loops throught a file, extracts certain portions of a line and rewrites them in a different format (using simple python functions</p>
+<h3>Template Print</h3><p>Uses a preformatted template file to create</p>
+
+      <br><br><h2>
+        Basic File Loop
+      </h2><br />
+      <p>
+        A file copy/modify loop with a very simple string/line operation
+      </p>
+      <div class="titlebar">
+        <p>
+          basic_file_loop.py
+        </p>
+      </div>
+      <div class="codebox">
+<pre>
+<comment>#Basic file modification</comment>
+
+<comment>#Creates output.txt which is a copy of input.txt</comment>
+<comment>#except with 'brown' replace with 'blue'</comment>
+
+fIn = open(<strings>'input.txt'</strings>, <strings>'r'</strings>)
+fOut = open(<strings>'output.txt'</strings>, <strings>'w'</strings>)
+
+<comment>#parser</comment>
+for line in fIn:
+line = line.replace(<strings>'brown'</strings>, <strings>'blue'</strings>)
+fOut.write(line)
+
+fIn.close()
+fOut.close()
+</pre>
+      </div><br />
+      <br />
+      <h2>
+        Basic Reformat Loop
+      </h2><br />
+      <p>
+        Changes a quote-wrapped, comma-delited data file to be unquoted and space delimited. Notice
+        the spacing is inputfile is "inconcistent" so we need to make our script robust enought to
+        handle it.
+      </p>
+      <div class="titlebar" style="background-color:#FF9933">
+        <p >
+          input_data.txt
+        </p>
+      </div>
+      <div class="codebox">
+<pre><strings>Point Data
+pt1,"100.3","200.34","345"
+pt2,  "34.3",  "200.34",   "777"
+pt3,"100.3"  ,"33.34"  ,"45.67"</pre>
+      </div><br />
+      <br />
+
+	  
+	  <div class="titlebar">
+        <p>
+          basic_reformat_loop.py
+        </p>
+      </div>
+	  
+	  
+<div class="codebox">
+<pre><comment>#Basic file modification</comment>
+
+<comment>#Creates output.txt which is a copy of input.txt</comment>
+<comment>#except with 'brown' replace with 'blue'</comment>
+
+fIn = open(<strings>'input_data.txt'</strings>, <strings>'r'</strings>)
+fOut = open(<strings>'output_data.txt'</strings>, <strings>'w'</strings>)
+
+<comment>#parser</comment>
+for line in fIn:
+    <comment>#spling the line into datas</comment>
+    row = line.split(<strings>','</strings>)
+
+    <comment>#initialize count</comment>
+    i = 0
+    for data in row:
+        <comment>#strip leading and trailing whitespace</comment>
+        data = data.lstrip()
+        data = data.rstrip()
+
+        <comment>#remove double-quotes</comment>
+        data = data.strip(<strings>'"'</strings>)
+
+        <comment>#reassign, increment count</comment>
+        row[i] = data
+        i += 1
+
+    <comment>#rejoin the row into a line and write it to fOut</comment>
+    line = <strings>" "</strings>.join(row)
+    fOut.write(line + <strings>'\n'</strings>)
+
+
+fIn.close()
+fOut.close()</pre></div>
+
+<script src="../js/bottom.js" type="text/javascript"></script>

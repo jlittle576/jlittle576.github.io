@@ -1,0 +1,67 @@
+<html>
+<link href="../../style.css" rel="stylesheet" type="text/css" >
+
+      <p>
+        Changes a quote-wrapped, comma-delited data file to be unquoted and space delimited. Notice
+        the spacing is inputfile is "inconcistent" so we need to make our script robust enought to
+        handle it.
+      </p>
+      <div class="titlebar" style="background-color:#FF9933">
+        <p >
+          input_data.txt
+        </p>
+      </div>
+      <div class="codebox">
+<pre><strings>Point Data
+pt1,"100.3","200.34","345"
+pt2,  "34.3",  "200.34",   "777"
+pt3,"100.3"  ,"33.34"  ,"45.67"</pre>
+      </div><br />
+      <br />
+
+	  
+	  <div class="titlebar">
+        <p>
+          basic_reformat_loop.py
+        </p>
+      </div>
+	  
+	  
+<div class="codebox">
+<pre><comment>#Basic file modification</comment>
+
+<comment>#Creates output.txt which is a copy of input.txt</comment>
+<comment>#except with 'brown' replace with 'blue'</comment>
+
+fIn = open(<strings>'input_data.txt'</strings>, <strings>'r'</strings>)
+fOut = open(<strings>'output_data.txt'</strings>, <strings>'w'</strings>)
+
+<comment>#parser</comment>
+for line in fIn:
+    <comment>#spling the line into datas</comment>
+    row = line.split(<strings>','</strings>)
+
+    <comment>#initialize count</comment>
+    i = 0
+    for data in row:
+        <comment>#strip leading and trailing whitespace</comment>
+        data = data.lstrip()
+        data = data.rstrip()
+
+        <comment>#remove double-quotes</comment>
+        data = data.strip(<strings>'"'</strings>)
+
+        <comment>#reassign, increment count</comment>
+        row[i] = data
+        i += 1
+
+    <comment>#rejoin the row into a line and write it to fOut</comment>
+    line = <strings>" "</strings>.join(row)
+    fOut.write(line + <strings>'\n'</strings>)
+
+
+fIn.close()
+fOut.close()</pre></div>
+
+
+</html>

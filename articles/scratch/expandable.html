@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Test</title>
+		<script language="javascript"> 
+function toggle(elementId) {
+	var ele = document.getElementById(elementId);
+	if(ele.style.display == "block") {
+    		ele.style.display = "none";
+  	}
+	else {
+		ele.style.display = "block";
+	}}
+function hide(elementId) {
+	var ele = document.getElementById(elementId);
+	ele.style.display = "none";
+}
+</script>
+	</head>
+	<body>
+<div class="tree">	
+<a id="displayText" href="javascript:toggle('toggleText');">show</a>
+<div onclick="javascript:toggle('toggleText');">
+	<div id="toggleText" style="display:none; border-width:2px; border-style:solid">stuff
+<a id="unDisplayText" href="javascript:hide('toggleText');">hide</a>
+	</div>
+	
+	
+</div>	
+</div></body>
+</html>
